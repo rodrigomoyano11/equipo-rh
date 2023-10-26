@@ -1,0 +1,40 @@
+{
+  "css.customData": ["./.vscode/custom-css.json"],
+  "files.exclude": {
+    "**/db.ts": true,
+    "**/env.mjs": true,
+    "**/middleware.ts": true,
+    ".eslintrc": true,
+    ".gitignore": true,
+    ".husky": true,
+    ".next": true,
+    ".npmrc": true,
+    ".prettierignore": true,
+    ".prettierrc": true,
+    ".stylelintrc": true,
+    ".vercel": true,
+    ".vscode": true,
+    "components.json": true,
+    "drizzle.config.ts": true,
+    "next-env.d.ts": true,
+    "next.config.js": true,
+    "node_modules": true,
+    "pnpm-lock.yaml": true,
+    "bun.lockb": true,
+    "postcss.config.js": true,
+    "prettier.config.js": true,
+    "README.md": true,
+    "tailwind.config.js": true,
+    "tsconfig.json": true
+  },
+  "files.readonlyInclude": {
+    ".husky": true,
+    ".next": true,
+    ".vercel": true,
+    "bun.lockb": true,
+    "next-env.d.ts": true,
+    "node_modules": true,
+    "pnpm-lock.yaml": true
+  },
+  "typescript.tsdk": "node_modules/typescript/lib"
+}

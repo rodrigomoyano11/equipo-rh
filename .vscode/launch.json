@@ -1,0 +1,15 @@
+{
+  "configurations": [
+    {
+      "command": "bun run dev",
+      "name": "Server",
+      "request": "launch",
+      "serverReadyAction": {
+        "action": "debugWithEdge",
+        "pattern": "- Local:"
+      },
+      "type": "node-terminal"
+    }
+  ],
+  "version": "0.2.0"
+}
