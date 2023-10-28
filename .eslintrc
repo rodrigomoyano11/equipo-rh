@@ -28,6 +28,10 @@
     "@typescript-eslint/consistent-type-definitions": ["error", "type"],
     "@typescript-eslint/no-confusing-void-expression": ["error", { "ignoreArrowShorthand": true }],
     "@typescript-eslint/require-await": "error",
+    "@typescript-eslint/no-unused-vars": [
+      "warn",
+      { "argsIgnorePattern": "^_", "varsIgnorePattern": "^_" }
+    ],
 
     // React
     "react/self-closing-comp": "warn",
@@ -195,7 +199,7 @@
   },
   "overrides": [
     {
-      "files": ["*/**/actions.ts"],
+      "files": ["*/**/actions.ts", "*/**/component.tsx", "*/**/page.tsx"],
       "rules": {
         "@typescript-eslint/require-await": "off"
       }
