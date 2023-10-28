@@ -1,4 +1,5 @@
-import { CookieMethods, CookieOptions, createServerClient } from '@supabase/ssr'
+import { CookieMethods, createServerClient } from '@supabase/ssr'
+import { ResponseCookie } from 'next/dist/compiled/@edge-runtime/cookies'
 import { cookies as getCookies } from 'next/headers'
 import { Database } from './types'
 
@@ -11,14 +12,14 @@ const getSupabase = () => {
   const cookies = getCookies()
 
   const methods: CookieMethods = {
-    get: (name: string) => cookies.get(name)?.value,
+    get: (name) => cookies.get(name)?.value,
 
-    set: (name: string, value: string, options: CookieOptions) => {
-      cookies.set({ name, value, ...options })
+    set: (name, value, options) => {
+      cookies.set({ ...(options as ResponseCookie), name, value })
     },
 
-    remove: (name: string, options: CookieOptions) => {
-      cookies.delete({ name, ...options })
+    remove: (name, options) => {
+      cookies.delete({ ...(options as ResponseCookie), name })
     },
   }
 
