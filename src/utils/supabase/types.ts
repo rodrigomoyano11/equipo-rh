@@ -1,4 +1,4 @@
-import { SupabaseClient } from "@supabase/supabase-js"
+import { SupabaseClient } from '@supabase/supabase-js'
 
 // Main Supabase client
 type Json = Json[] | boolean | number | string | { [key: string]: Json | undefined } | null
@@ -212,7 +212,7 @@ type Database = {
 }
 
 // Buckets
-type Bucket = 'profile-pictures' | 'resumes'
+type Bucket = 'company-logos' | 'profile-pictures' | 'resumes'
 
 // Utility types
 type Tables<T extends keyof Database['public']['Tables']> = Database['public']['Tables'][T]['Row']
