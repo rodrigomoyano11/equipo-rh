@@ -1,3 +1,6 @@
+import { SupabaseClient } from "@supabase/supabase-js"
+
+// Main Supabase client
 type Json = Json[] | boolean | number | string | { [key: string]: Json | undefined } | null
 
 type Database = {
@@ -208,4 +211,13 @@ type Database = {
   }
 }
 
-export type { Database, Json }
+// Buckets
+type Bucket = 'profile-pictures' | 'resumes'
+
+// Utility types
+type Tables<T extends keyof Database['public']['Tables']> = Database['public']['Tables'][T]['Row']
+type Enums<T extends keyof Database['public']['Enums']> = Database['public']['Enums'][T]
+
+type WithSupabase<T> = T & { supabase: SupabaseClient<Database> }
+
+export type { Database, Enums, Json, Tables, Bucket, WithSupabase }
