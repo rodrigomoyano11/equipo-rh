@@ -1,22 +1,24 @@
 'use client'
 
-import '@uppy/core/dist/style.min.css'
-import '@uppy/dashboard/dist/style.min.css'
-import '@uppy/image-editor/dist/style.min.css'
 import { DashboardModal } from '@uppy/react'
 import { useFileField } from './hook'
 import { FileFieldProps } from './types'
+import { useId } from 'react'
 
-const FileField = ({ name, ...props }: FileFieldProps) => {
+const FileField = ({ name, label, ...props }: FileFieldProps) => {
   const { url, openModal, closeModal, isOpen, uppy } = useFileField(props)
+
+  const id = useId()
 
   return (
     <>
+      <label htmlFor={id}>{label}</label>
+
       <button type="button" onClick={openModal}>
         Open
       </button>
 
-      <input name={name} type="hidden" value={url} />
+      <input id={id} name={name} type="hidden" value={url} />
 
       <DashboardModal
         hideCancelButton

@@ -8,7 +8,7 @@ const POST = async (request: NextRequest) => {
   const path = params.get('path')
   const bucket = params.get('bucket') as Bucket | null
 
-  if (!path || !bucket) return NextResponse.error()
+  if (!bucket) return NextResponse.error()
 
   const supabase = getSupabase()
 
@@ -16,7 +16,12 @@ const POST = async (request: NextRequest) => {
 
   const file = formData.get('file') as File | null
 
-  const url = await uploadFile({ file, selectedBucket: bucket, selectedPath: path, supabase })
+  const url = await uploadFile({
+    file,
+    selectedBucket: bucket,
+    selectedPath: path ?? undefined,
+    supabase,
+  })
 
   return NextResponse.json({ url })
 }

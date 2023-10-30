@@ -22,7 +22,7 @@ const getUppy = () => {
   return uppy
 }
 
-const useFileField = ({ bucket, path = '/', allowedFileTypes }: UseFileFieldProps) => {
+const useFileField = ({ bucket, path, allowedFileTypes }: UseFileFieldProps) => {
   // States
   const [uppy] = useState(getUppy)
   const [isOpen, setIsOpen] = useState(false)
@@ -39,8 +39,11 @@ const useFileField = ({ bucket, path = '/', allowedFileTypes }: UseFileFieldProp
 
     uppy.setOptions({ restrictions })
 
-    const params = new URLSearchParams({ bucket, path }).toString()
-    const endpoint = `/api/upload?${params}`
+    const endpoint = new URL('/api/upload', window.location.origin)
+
+    endpoint.searchParams.append('bucket', bucket)
+    if (path) endpoint.searchParams.append('path', path)
+
     uppy.getPlugin('XHRUpload')?.setOptions({ endpoint, method: 'POST', fieldName: 'file' })
   }, [allowedFileTypes, bucket, path, uppy])
 

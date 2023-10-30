@@ -40,12 +40,13 @@ type SelectedFile = {
 }
 
 type FileFieldProps = {
+  label: string
   name: string
   bucket: Bucket
   path?: string
   allowedFileTypes?: string[]
 }
 
-type UseFileFieldProps = Omit<FileFieldProps, 'name'>
+type UseFileFieldProps = Omit<FileFieldProps, 'label' | 'name'>
 
 export type { SelectedFile, UseFileFieldProps, FileFieldProps }
