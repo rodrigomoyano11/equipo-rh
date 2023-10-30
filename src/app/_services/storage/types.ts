@@ -1,5 +1,10 @@
 import { Bucket } from '@/utils/supabase/types'
 
+type GetFileNameParams = {
+  file: File
+  name: string
+}
+
 type GetFileInfoFromUrlParams = {
   url: string
 }
@@ -12,6 +17,8 @@ type UploadFileParams = {
   file: File | null
   selectedBucket: Bucket
   selectedPath?: string
+  name: string
+  fileName: string
 }
 
 type DeleteFileParams = {
@@ -23,4 +30,5 @@ export type {
   GetFileInfoFromUrlParams,
   GetFileNameWithUserIdParams,
   UploadFileParams,
+  GetFileNameParams,
 }

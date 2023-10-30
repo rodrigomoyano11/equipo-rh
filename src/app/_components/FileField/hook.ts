@@ -22,7 +22,7 @@ const getUppy = () => {
   return uppy
 }
 
-const useFileField = ({ bucket, path, allowedFileTypes }: UseFileFieldProps) => {
+const useFileField = ({ bucket, path, allowedFileTypes, fileName }: UseFileFieldProps) => {
   // States
   const [uppy] = useState(getUppy)
   const [isOpen, setIsOpen] = useState(false)
@@ -43,9 +43,10 @@ const useFileField = ({ bucket, path, allowedFileTypes }: UseFileFieldProps) => 
 
     endpoint.searchParams.append('bucket', bucket)
     if (path) endpoint.searchParams.append('path', path)
+    if (fileName) endpoint.searchParams.append('name', fileName)
 
     uppy.getPlugin('XHRUpload')?.setOptions({ endpoint, method: 'POST', fieldName: 'file' })
-  }, [allowedFileTypes, bucket, path, uppy])
+  }, [allowedFileTypes, bucket, fileName, path, uppy])
 
   const onFileRemove = useCallback(() => {
     uppy.on('file-removed', (_file, reason) => {

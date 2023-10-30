@@ -6,20 +6,10 @@ import {
   GetFileInfoFromUrlParams,
   GetFileNameWithUserIdParams,
   UploadFileParams,
+  GetFileNameParams,
 } from './types'
 
-const getFileNameWithUserId = async (params: WithSupabase<GetFileNameWithUserIdParams>) => {
-  const { file, supabase } = params
-
-  const { data, error } = await supabase.auth.getUser()
-
-  if (error) {
-    console.error("'Storage' service", error)
-    return null
-  }
-
-  const name = data.user.id
-
+const getFileName = ({ file, name }: GetFileNameParams) => {
   const lastIndexOfDot = file.name.lastIndexOf('.')
   const extension = file.name.slice(lastIndexOfDot)
 
@@ -28,6 +18,16 @@ const getFileNameWithUserId = async (params: WithSupabase<GetFileNameWithUserIdP
     extension,
     fileName: `${name}${extension}`,
   }
+}
+
+const getFileNameWithUserId = async (params: WithSupabase<GetFileNameWithUserIdParams>) => {
+  const { file, supabase } = params
+
+  const { data, error } = await supabase.auth.getUser()
+
+  if (!data.user || error) throw new Error("'Storage' service")
+
+  return getFileName({ file, name: data.user.id })
 }
 
 const getFileInfoFromUrl = ({ url }: GetFileInfoFromUrlParams) => {
@@ -44,12 +44,9 @@ const getFileInfoFromUrl = ({ url }: GetFileInfoFromUrlParams) => {
 }
 
 const uploadFile = async (params: WithSupabase<UploadFileParams>) => {
-  const { file, selectedBucket, selectedPath = '', supabase } = params
+  const { file, selectedBucket, selectedPath = '', supabase, name, fileName } = params
 
   if (!file) return null
-
-  const { name, fileName } = (await getFileNameWithUserId({ file, supabase })) ?? {}
-  if (!name || !fileName) return null
 
   const bucket = supabase.storage.from(selectedBucket as string)
 
@@ -94,4 +91,4 @@ const deleteFile = async ({ url, supabase }: WithSupabase<DeleteFileParams>) => 
   if (error) console.error(error)
 }
 
-export { deleteFile, getFileInfoFromUrl, getFileNameWithUserId, uploadFile }
+export { deleteFile, getFileInfoFromUrl, getFileNameWithUserId, uploadFile, getFileName }

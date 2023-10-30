@@ -45,6 +45,7 @@ type FileFieldProps = {
   bucket: Bucket
   path?: string
   allowedFileTypes?: string[]
+  fileName?: string
 }
 
 type UseFileFieldProps = Omit<FileFieldProps, 'label' | 'name'>

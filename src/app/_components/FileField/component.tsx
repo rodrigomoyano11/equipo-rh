@@ -1,9 +1,9 @@
 'use client'
 
 import { DashboardModal } from '@uppy/react'
+import { useId } from 'react'
 import { useFileField } from './hook'
 import { FileFieldProps } from './types'
-import { useId } from 'react'
 
 const FileField = ({ name, label, ...props }: FileFieldProps) => {
   const { url, openModal, closeModal, isOpen, uppy } = useFileField(props)
