@@ -71,7 +71,7 @@
     "complexity": ["error", 15],
     "consistent-return": "error",
     "consistent-this": "error",
-    "curly": ["error", "multi", "consistent"],
+    "curly": ["error", "multi-or-nest", "consistent"],
     "default-case": "error",
     "default-case-last": "error",
     "default-param-last": "error",
