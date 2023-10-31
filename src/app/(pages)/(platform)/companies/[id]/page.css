@@ -1,0 +1,40 @@
+body {
+  margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+}
+
+p {
+  margin: 0;
+}
+
+.item {
+  display: flex;
+  flex-direction: column;
+  padding: 1rem;
+  border-block-end: 1px solid #ccc;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  padding: 0.5rem 0;
+
+  .label {
+    font-weight: bold;
+  }
+
+  > div {
+    display: flex;
+    flex-direction: row;
+    gap: 0.5rem;
+  }
+}
