@@ -218,6 +218,16 @@ type Bucket = 'company-logos' | 'profile-pictures' | 'resumes'
 type Tables<T extends keyof Database['public']['Tables']> = Database['public']['Tables'][T]['Row']
 type Enums<T extends keyof Database['public']['Enums']> = Database['public']['Enums'][T]
 
+type DbInsert<T extends keyof Database['public']['Tables']> = Omit<
+  Database['public']['Tables'][T]['Insert'],
+  'created_at' | 'id'
+>
+
+type DbUpdate<T extends keyof Database['public']['Tables']> = Omit<
+  Database['public']['Tables'][T]['Update'],
+  'created_at' | 'id'
+>
+
 type WithSupabase<T> = T & { supabase: SupabaseClient<Database> }
 
-export type { Database, Enums, Json, Tables, Bucket, WithSupabase }
+export type { Bucket, Database, DbInsert, DbUpdate, Enums, Json, Tables, WithSupabase }
