@@ -29,6 +29,7 @@
     "@uppy/react": "3.1.4",
     "@uppy/xhr-upload": "3.4.2",
     "i18next": "23.6.0",
+    "mime": "beta",
     "next": "14.0.1",
     "react": "18.2.0",
     "react-aria": "3.29.1",
