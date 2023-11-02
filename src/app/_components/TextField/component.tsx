@@ -6,9 +6,9 @@ import {
   Input as AriaInput,
   Label as AriaLabel,
   Text as AriaText,
+  TextArea as AriaTextArea,
   TextField as AriaTextField,
   TextFieldProps as AriaTextFieldProps,
-  TextArea as AriaTextArea,
 } from 'react-aria-components'
 import { useController } from 'react-hook-form'
 import './styles.css'
@@ -16,7 +16,16 @@ import { TextFieldProps } from './types'
 
 const TextField: FieldComponent<TextFieldProps> = (props) => {
   // Props
-  const { name, label, description, placeholder, largeText, isDisabled, ...restOfProps } = props
+  const {
+    name,
+    label,
+    description,
+    placeholder,
+    largeText,
+    isDisabled,
+    className,
+    ...restOfProps
+  } = props
 
   // Hooks
   const id = useId()
@@ -43,7 +52,7 @@ const TextField: FieldComponent<TextFieldProps> = (props) => {
   }
 
   return (
-    <AriaTextField ref={ref} {...ariaTextFieldProps} className="text-field">
+    <AriaTextField ref={ref} className={`text-field ${className}`} {...ariaTextFieldProps}>
       {label && (
         <AriaLabel className="label" htmlFor={id}>
           {label}
