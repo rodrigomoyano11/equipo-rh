@@ -1,25 +1,54 @@
 /* eslint-disable camelcase */
+
 'use client'
 
 import { SelectField } from '@/app/_components/SelectField'
-import { useEffect, useState } from 'react'
-import { useFormState } from 'react-dom'
+import { ItemProps } from '@/app/_components/SelectField/Item'
+import { DbInsert } from '@/utils/supabase/types'
+import { useEffect, useState, useTransition } from 'react'
+import { FormProvider, useForm } from 'react-hook-form'
 import { addApplication, getCandidates, getJobs } from './actions'
 import './page.css'
 
-type Candidates = Awaited<ReturnType<typeof getCandidates>>
-
-type Jobs = Awaited<ReturnType<typeof getJobs>>
-
 const NewApplicationPage = () => {
-  const [application, addApplicationAction] = useFormState(addApplication, undefined)
+  // Hooks
+  const methods = useForm<DbInsert<'applications'>>({
+    defaultValues: {},
+  })
 
-  const [candidates, setCandidates] = useState<Candidates>([])
-  const [jobs, setJobs] = useState<Jobs>([])
+  const [isPending, startTransition] = useTransition()
 
+  // States
+  const [candidates, setCandidates] = useState<ItemProps[]>([])
+  const [jobs, setJobs] = useState<ItemProps[]>([])
+
+  const [application, setApplication] = useState<Awaited<ReturnType<typeof addApplication>>>()
+
+  // Methods
+  const setJobOptions = async () => {
+    const items = await getJobs()
+    const adaptedJobs = items.map(({ id, title, companies }) => ({
+      label: `${title} (${companies?.name ?? 'Sin empresa'})`,
+      value: id,
+    }))
+
+    setJobs(adaptedJobs)
+  }
+
+  const setCandidateOptions = async () => {
+    const items = await getCandidates()
+    const adaptedCandidates = items.map(({ id, first_name, last_name }) => ({
+      label: `${first_name} ${last_name}`,
+      value: id,
+    }))
+
+    setCandidates(adaptedCandidates)
+  }
+
+  // Effects
   useEffect(() => {
-    void getJobs().then(setJobs)
-    void getCandidates().then(setCandidates)
+    void setJobOptions()
+    void setCandidateOptions()
   }, [])
 
   useEffect(() => {
@@ -27,35 +56,23 @@ const NewApplicationPage = () => {
     console.log({ application })
   }, [application])
 
-  console.log({ candidates, jobs })
-
+  // Render
   if (!candidates.length || !jobs.length) return <h1>Cargando...</h1>
   return (
-    <form action={addApplicationAction}>
-      <h1>Aplicar a Oferta de Trabajo</h1>
+    <FormProvider {...methods}>
+      <form
+        onSubmit={methods.handleSubmit((data) => {
+          startTransition(() => void addApplication(data).then(setApplication))
+        })}>
+        <h1>Aplicar a Oferta de Trabajo</h1>
 
-      <SelectField
-        defaultValue={jobs[0].id}
-        label="Oferta de Trabajo"
-        name="job_id"
-        options={jobs.map(({ id, title, companies }) => ({
-          label: `${title} (${companies?.name ?? 'Sin empresa'})`,
-          value: id,
-        }))}
-      />
+        <SelectField label="Oferta de Trabajo" name="job_id" options={jobs} />
 
-      <SelectField
-        defaultValue={candidates[0].id}
-        label="Candidato"
-        name="candidate_id"
-        options={candidates.map(({ id, first_name, last_name }) => ({
-          label: `${first_name} ${last_name}`,
-          value: id,
-        }))}
-      />
+        <SelectField label="Candidato" name="candidate_id" options={candidates} />
 
-      <button type="submit">Enviar</button>
-    </form>
+        <button type="submit">{isPending ? 'Enviando...' : 'Enviar'}</button>
+      </form>
+    </FormProvider>
   )
 }
 
