@@ -1,0 +1,80 @@
+@layer components {
+  @scope (.select-field-item) {
+    & {
+      cursor: pointer;
+
+      display: flex;
+      flex-flow: column;
+
+      padding: var(--space-1) var(--space-2);
+
+      color: var(--text-color-3);
+
+      background-color: var(--background-color-1);
+      border: var(--default-border);
+      border-color: transparent;
+      border-radius: var(--border-radius);
+      outline: none;
+
+      transition:
+        background-color 0.2s ease-in-out,
+        border-color 0.2s ease-in-out;
+    }
+
+    .label {
+      font-size: var(--level-3);
+    }
+
+    .label:has(+ .description) {
+      font-size: var(--level-2);
+    }
+
+    .description {
+      font-size: var(--level-1);
+      color: var(--text-color-2);
+    }
+
+    &[data-selected]:not([data-disabled]) {
+      background-color: var(--background-color-2);
+      border-color: var(--border-color-1);
+
+      .label {
+        font-weight: var(--font-weight-bold);
+      }
+
+      &[data-hovered],
+      &[data-focused] {
+        border-color: var(--border-color-2);
+      }
+    }
+
+    :is(&[data-hovered], &[data-focused]):not([data-disabled]) {
+      background-color: var(--background-color-2);
+      border-color: var(--border-color-2);
+    }
+
+    &[data-pressed]:not([data-disabled]) {
+      background-color: var(--background-color-2);
+    }
+
+    :is(&[data-focus-visible], &[data-selected][data-focus-visible]):not([data-disabled]) {
+      border-color: var(--blue-color);
+      box-shadow: 0 0 0 var(--border-width-1) var(--blue-color);
+    }
+
+    &[data-disabled] {
+      pointer-events:;
+      cursor: not-allowed;
+      color: var(--text-color-1);
+
+      .description {
+        color: var(--text-color-1);
+      }
+
+      &[data-focus-visible] {
+        border-color: var(--border-color-1);
+        box-shadow: none;
+      }
+    }
+  }
+}
