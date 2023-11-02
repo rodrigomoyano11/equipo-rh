@@ -22,8 +22,7 @@ const isSection = (option: SelectFieldOption): option is SectionProps => 'items'
 
 const SelectField: FieldComponent<SelectFieldProps> = (props) => {
   // Props
-  const { name, label, description, placeholder, isDisabled, options, className, ...restOfProps } =
-    props
+  const { name, label, description, placeholder, isDisabled, options, className } = props
 
   // Hooks
   const id = useId()
@@ -56,7 +55,6 @@ const SelectField: FieldComponent<SelectFieldProps> = (props) => {
     selectedKey: value,
     name,
     placeholder,
-    ...restOfProps,
     ...ariaLabelProps,
   }
 
@@ -64,8 +62,8 @@ const SelectField: FieldComponent<SelectFieldProps> = (props) => {
     <AriaSelectField
       ref={ref}
       className={`select-field ${className}`}
-      {...ariaSelectFieldProps}
-      disabledKeys={disabledOptions}>
+      disabledKeys={disabledOptions}
+      {...ariaSelectFieldProps}>
       {label && (
         <AriaLabel className="label" htmlFor={id}>
           {label}

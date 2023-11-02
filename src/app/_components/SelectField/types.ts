@@ -12,4 +12,4 @@ type SelectFieldProps = FieldProps & {
   options: SelectFieldOption[]
 }
 
-export type { SelectFieldProps, SelectFieldOption }
+export type { SelectFieldOption, SelectFieldProps }
