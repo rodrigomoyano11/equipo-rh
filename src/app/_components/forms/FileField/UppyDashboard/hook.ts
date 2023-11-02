@@ -1,5 +1,5 @@
-import { deleteFile } from '@/app/_services/storage/service'
 import { getSupabase } from '@/utils/supabase/client'
+import { deleteFile } from '@services/storage/service'
 import Compressor from '@uppy/compressor'
 import { Locale, Uppy } from '@uppy/core'
 import esES from '@uppy/locales/lib/es_ES'

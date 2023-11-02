@@ -1,9 +1,9 @@
 'use client'
 
+import { I18nProvider as AriaI18nProvider } from '@react-aria/i18n'
 import { ThemeProvider } from '../../ThemeProvider'
 import { ZodI18nProvider } from '../../ZodI18nProvider'
 import { ClientProvidersProps } from './types'
-import { I18nProvider as AriaI18nProvider } from '@react-aria/i18n'
 
 const ClientProviders = ({ children }: ClientProvidersProps) => (
   <ThemeProvider>

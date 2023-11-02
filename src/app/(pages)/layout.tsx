@@ -1,7 +1,7 @@
+import { Providers } from '@components/providers/Providers'
 import { Metadata } from 'next'
 import { Open_Sans as OpenSans } from 'next/font/google'
 import { PropsWithChildren } from 'react'
-import { Providers } from '../_components/Providers'
 import '../globals.css'
 
 const font = OpenSans({ weight: ['400', '700'], subsets: ['latin'], variable: '--font-family' })
