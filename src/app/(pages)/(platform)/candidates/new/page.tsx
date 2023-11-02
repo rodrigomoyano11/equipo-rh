@@ -1,35 +1,67 @@
+/* eslint-disable camelcase */
 'use client'
 
-import { CheckboxField } from '@/app/_components/CheckboxField'
-import { DateField } from '@/app/_components/DateField'
-import { SelectField } from '@/app/_components/SelectField'
+import { DateField } from '@/app/_components/OLDDateField'
 import { getSupabase } from '@/utils/supabase/client'
+import { DbInsert } from '@/utils/supabase/types'
+import { CheckboxField } from '@components/CheckboxField'
 import { FileField } from '@components/FileField'
+import { SelectField } from '@components/SelectField'
 import { TextField } from '@components/TextField'
-import { useCallback, useEffect, useState } from 'react'
-import { useFormState } from 'react-dom'
+import { useCallback, useEffect, useState, useTransition } from 'react'
+import { FormProvider, useForm } from 'react-hook-form'
 import { addCandidate } from './actions'
+import { options } from './constants'
 import './page.css'
 
 const NewCandidatePage = () => {
+  // Hooks
+  const methods = useForm<DbInsert<'candidates'>>({
+    defaultValues: {
+      first_name: 'John',
+      last_name: 'Doe',
+      identification_type: 'dni',
+      identification_number: '32546678',
+      birthdate: '1995-11-14',
+      email: '',
+      phone: 3546546546,
+      country: 'Argentina',
+      state: 'Buenos Aires',
+      locality: 'CABA',
+      can_relocate: 'true' as unknown as boolean,
+      address: 'Av. Corrientes 5274',
+      education_level: 'primary',
+      education_status: 'incomplete',
+      experience_level: 'need_to_be_taught',
+      best_skills: 'Me gusta mucho programar, y tengo experiencia en React y Node.js',
+      why_hire_you: 'Soy muy responsable y me gusta trabajar en equipo',
+      profile_picture: '',
+      professional_profile: 'Soy un desarrollador web con 5 años de experiencia en React y Node.js',
+      accepted_terms: false,
+      languages: 'spanish' as unknown as string[],
+    },
+  })
+
+  const [isPending, startTransition] = useTransition()
+
+  // Data
   const supabase = getSupabase()
 
-  const [candidate, addCandidateAction] = useFormState(addCandidate, undefined)
+  // States
+  const [candidate, setCandidate] = useState<Awaited<ReturnType<typeof addCandidate>>>()
 
-  const [email, setEmail] = useState('')
-
+  // Methods
   const setInitialValues = useCallback(async () => {
     const { data, error } = await supabase.auth.getUser()
-    if (error) {
-      console.error(error)
-      return
-    }
+    if (error) return
 
     const { email } = data.user
 
-    setEmail(email ?? '')
-  }, [supabase.auth])
+    if (!email) return
+    methods.setValue('email', email)
+  }, [methods, supabase.auth])
 
+  // Effects
   useEffect(() => {
     void setInitialValues()
   }, [setInitialValues])
@@ -39,193 +71,128 @@ const NewCandidatePage = () => {
     console.log({ candidate })
   }, [candidate])
 
+  // Render
   return (
-    <form action={addCandidateAction}>
-      <h1>Crear Candidato</h1>
+    <FormProvider {...methods}>
+      <form
+        onSubmit={methods.handleSubmit((data) => {
+          const convertedData = {
+            ...data,
+            can_relocate: data.can_relocate === ('true' as unknown as boolean),
+            languages: [data.languages as unknown as string],
+            accepted_terms: Boolean(data.accepted_terms),
+          }
 
-      <div className="basic">
-        <h2>Datos básicos</h2>
+          startTransition(() => void addCandidate(convertedData).then(setCandidate))
+        })}>
+        <h1>Crear Candidato</h1>
 
-        <TextField
-          autoComplete="family-name"
-          defaultValue="Doe"
-          label="Apellido"
-          name="first_name"
-        />
+        <div className="basic">
+          <h2>Datos básicos</h2>
 
-        <TextField autoComplete="given-name" defaultValue="John" label="Nombre" name="last_name" />
+          <TextField autoComplete="family-name" label="Apellido" name="first_name" />
 
-        <SelectField
-          defaultValue="dni"
-          label="Tipo de documento"
-          name="identification_type"
-          options={[
-            { value: 'dni', label: 'DNI' },
-            { value: 'passport', label: 'Pasaporte' },
-            { value: 'other', label: 'Otro' },
-          ]}
-        />
+          <TextField autoComplete="given-name" label="Nombre" name="last_name" />
 
-        <TextField
-          autoComplete="identification"
-          defaultValue="32546678"
-          label="Número de documento"
-          name="identification_number"
-        />
+          <SelectField
+            label="Tipo de documento"
+            name="identification_type"
+            options={options.identificationType}
+          />
 
-        <DateField defaultValue="1995-11-14" label="Fecha de nacimiento" name="birthdate" />
-      </div>
+          <TextField label="Número de documento" name="identification_number" />
 
-      <div className="contact">
-        <h2>Contacto</h2>
+          <DateField label="Fecha de nacimiento" name="birthdate" />
+        </div>
 
-        <TextField
-          autoComplete="email"
-          defaultValue={email}
-          label="Correo electrónico"
-          name="email"
-        />
+        <div className="contact">
+          <h2>Contacto</h2>
 
-        <TextField
-          autoComplete="tel-national"
-          defaultValue="3546546546"
-          label="Teléfono"
-          name="phone"
-        />
-      </div>
+          <TextField autoComplete="email" label="Correo electrónico" name="email" />
 
-      <div className="location">
-        <h2>Ubicación</h2>
+          <TextField autoComplete="tel-national" label="Teléfono" name="phone" />
+        </div>
 
-        <SelectField
-          defaultValue="Argentina"
-          label="País"
-          name="country"
-          options={[{ value: 'Argentina', label: 'Argentina' }]}
-        />
+        <div className="location">
+          <h2>Ubicación</h2>
 
-        <SelectField
-          defaultValue="Buenos Aires"
-          label="Provincia"
-          name="state"
-          options={[{ value: 'Buenos Aires', label: 'Buenos Aires' }]}
-        />
+          <SelectField
+            label="País"
+            name="country"
+            options={[{ value: 'Argentina', label: 'Argentina' }]}
+          />
 
-        <SelectField
-          defaultValue="CABA"
-          label="Localidad"
-          name="locality"
-          options={[{ value: 'CABA', label: 'CABA' }]}
-        />
+          <SelectField
+            label="Provincia"
+            name="state"
+            options={[{ value: 'Buenos Aires', label: 'Buenos Aires' }]}
+          />
 
-        <TextField
-          autoComplete="street-address"
-          defaultValue="Av. Corrientes 5274"
-          label="Dirección"
-          name="address"
-        />
+          <SelectField
+            label="Localidad"
+            name="locality"
+            options={[{ value: 'CABA', label: 'CABA' }]}
+          />
 
-        <SelectField
-          defaultValue="yes"
-          label="¿Estás dispuesto a reubicarte?"
-          name="can_relocate"
-          options={[
-            { value: 'yes', label: 'Sí' },
-            { value: 'no', label: 'No' },
-          ]}
-        />
-      </div>
+          <TextField autoComplete="street-address" label="Dirección" name="address" />
 
-      <div className="education">
-        <h2>Formación</h2>
+          <SelectField
+            label="¿Estás dispuesto a reubicarte?"
+            name="can_relocate"
+            options={options.canRelocate}
+          />
+        </div>
 
-        <SelectField
-          defaultValue="primary"
-          label="Nivel de educación"
-          name="education_level"
-          options={[
-            { value: 'primary', label: 'Primario' },
-            { value: 'secondary', label: 'Secundario' },
-            { value: 'tertiary', label: 'Terciario' },
-            { value: 'university', label: 'Universitario' },
-            { value: 'postgraduate', label: 'Posgrado' },
-          ]}
-        />
+        <div className="education">
+          <h2>Formación</h2>
 
-        <SelectField
-          defaultValue="incomplete"
-          label="Estado de educación"
-          name="education_status"
-          options={[
-            { value: 'complete', label: 'Completo' },
-            { value: 'in_progress', label: 'En curso' },
-            { value: 'incomplete', label: 'Incompleto' },
-          ]}
-        />
-      </div>
+          <SelectField
+            label="Nivel de educación"
+            name="education_level"
+            options={options.educationLevel}
+          />
 
-      <div className="skills">
-        <h2>Habilidades</h2>
+          <SelectField
+            label="Estado de educación"
+            name="education_status"
+            options={options.educationStatus}
+          />
+        </div>
 
-        <SelectField
-          defaultValue="need_to_be_taught"
-          label="Nivel de experiencia"
-          name="experience_level"
-          options={[
-            { value: 'need_to_be_taught', label: 'Necesito que me enseñen' },
-            { value: 'can_do_with_help', label: 'Puedo hacerlo con ayuda' },
-            { value: 'can_do_alone', label: 'Puedo hacerlo solo' },
-            { value: 'can_train_others', label: 'Puedo entrenar a otros' },
-            { value: 'have_trained_others', label: 'He entrenado a otros' },
-          ]}
-        />
+        <div className="skills">
+          <h2>Habilidades</h2>
 
-        <TextField
-          autoComplete="skills"
-          defaultValue="Me gusta mucho programar, y tengo experiencia en React y Node.js"
-          label="¿Cuáles son tus mejores habilidades?"
-          name="best_skills"
-        />
+          <SelectField
+            label="Nivel de experiencia"
+            name="experience_level"
+            options={options.experienceLevel}
+          />
 
-        <TextField
-          defaultValue="Soy muy responsable y me gusta trabajar en equipo"
-          label="¿Por qué deberíamos contratarte?"
-          name="why_hire_you"
-        />
-      </div>
+          <TextField label="¿Cuáles son tus mejores habilidades?" name="best_skills" />
 
-      <div className="profile">
-        <h2>Perfil</h2>
+          <TextField label="¿Por qué deberíamos contratarte?" name="why_hire_you" />
+        </div>
 
-        <FileField
-          allowedFileTypes={['image/png', 'image/jpeg']}
-          bucket="profile-pictures"
-          label="Foto de perfil"
-          name="profile_picture"
-        />
+        <div className="profile">
+          <h2>Perfil</h2>
 
-        <TextField
-          defaultValue="Soy un desarrollador web con 5 años de experiencia en React y Node.js"
-          label="Perfil profesional"
-          name="professional_profile"
-        />
+          <FileField
+            allowedFileTypes={['image/png', 'image/jpeg']}
+            bucket="profile-pictures"
+            label="Foto de perfil"
+            name="profile_picture"
+          />
 
-        <SelectField
-          defaultValue="Spanish"
-          label="Idiomas"
-          name="languages"
-          options={[
-            { value: 'Spanish', label: 'Español' },
-            { value: 'English', label: 'Inglés' },
-            { value: 'Portuguese', label: 'Portugués' },
-          ]}
-        />
+          <TextField label="Perfil profesional" name="professional_profile" />
 
-        <CheckboxField label="Acepto los términos y condiciones" name="accepted_terms" />
-      </div>
+          <SelectField label="Idiomas" name="languages" options={options.languages} />
 
-      <button type="submit">Enviar</button>
-    </form>
+          <CheckboxField label="Acepto los términos y condiciones" name="accepted_terms" />
+        </div>
+
+        <button type="submit">{isPending ? 'Enviando...' : 'Enviar'}</button>
+      </form>
+    </FormProvider>
   )
 }
 
