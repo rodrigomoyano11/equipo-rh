@@ -1,0 +1,35 @@
+@layer components {
+  @scope (.file-field) {
+    & {
+      display: flex;
+      flex-flow: column;
+      gap: var(--space-2);
+
+      inline-size: 100%;
+
+      color: var(--text-color-3);
+    }
+
+    .label {
+      display: block;
+      font-size: var(--level-3);
+      font-weight: var(--font-weight-bold);
+    }
+
+    .description {
+      font-size: var(--level-2);
+      color: var(--text-color-2);
+    }
+
+    .error-message {
+      font-size: var(--level-2);
+      color: var(--error-color);
+    }
+
+    &[data-invalid] {
+      .label {
+        color: var(--error-color);
+      }
+    }
+  }
+}

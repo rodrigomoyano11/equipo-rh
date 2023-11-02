@@ -2,10 +2,6 @@ import { deleteFile } from '@/app/_services/storage/service'
 import { getSupabase } from '@/utils/supabase/client'
 import Compressor from '@uppy/compressor'
 import { Locale, Uppy } from '@uppy/core'
-import '@uppy/core/dist/style.min.css'
-import '@uppy/dashboard/dist/style.min.css'
-import ImageEditor from '@uppy/image-editor'
-import '@uppy/image-editor/dist/style.min.css'
 import esES from '@uppy/locales/lib/es_ES'
 import XHRUpload from '@uppy/xhr-upload'
 import { useCallback, useEffect, useState } from 'react'
@@ -15,7 +11,6 @@ const getUppy = () => {
   const locale = esES as Locale
   const uppy = new Uppy({ locale })
 
-  uppy.use(ImageEditor)
   uppy.use(Compressor)
   uppy.use(XHRUpload, { endpoint: '' })
 
@@ -25,8 +20,10 @@ const getUppy = () => {
 const useFileField = ({ bucket, path, allowedFileTypes, fileName }: UseFileFieldProps) => {
   // States
   const [uppy] = useState(getUppy)
-  const [isOpen, setIsOpen] = useState(false)
+
   const [url, setUrl] = useState('')
+
+  const [isLoading, setIsLoading] = useState(false)
 
   // Methods
   const setInitialOptions = useCallback(() => {
@@ -72,23 +69,25 @@ const useFileField = ({ bucket, path, allowedFileTypes, fileName }: UseFileField
 
       if (!url) return
       setUrl(url)
+      setIsLoading(false)
     })
   }, [uppy])
 
-  // Handlers
-  const openModal = () => setIsOpen(true)
-  const closeModal = () => setIsOpen(false)
+  const onFileAdd = useCallback(() => uppy.on('file-added', () => uppy.upload()), [uppy])
+
+  const onUpload = useCallback(() => uppy.on('upload', () => setIsLoading(true)), [uppy])
 
   // Effects
   useEffect(() => {
     setInitialOptions()
 
+    onFileAdd()
     onFileRemove()
-
+    onUpload()
     onUploadComplete()
-  }, [onFileRemove, onUploadComplete, setInitialOptions])
+  }, [onFileAdd, onFileRemove, onUpload, onUploadComplete, setInitialOptions])
 
-  return { url, openModal, closeModal, uppy, isOpen }
+  return { url, uppy, isLoading }
 }
 
 export { useFileField }
