@@ -1,8 +1,8 @@
 'use client'
 
 import { DbInsert } from '@/utils/supabase/types'
-import { FileField } from '@components/FileField'
-import { TextField } from '@components/TextField'
+import { FileField } from '@components/forms/FileField'
+import { TextField } from '@components/forms/TextField'
 import { useEffect, useState, useTransition } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 import { addCompany } from './actions'

@@ -2,9 +2,9 @@
 
 'use client'
 
-import { SelectField } from '@/app/_components/SelectField'
-import { ItemProps } from '@/app/_components/SelectField/Item'
 import { DbInsert } from '@/utils/supabase/types'
+import { SelectField } from '@components/forms/SelectField'
+import { ItemProps } from '@components/forms/SelectField/Item'
 import { useEffect, useState, useTransition } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 import { addApplication, getCandidates, getJobs } from './actions'

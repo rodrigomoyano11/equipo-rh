@@ -1,13 +1,13 @@
 /* eslint-disable camelcase */
 'use client'
 
-import { DateField } from '@/app/_components/OLDDateField'
 import { getSupabase } from '@/utils/supabase/client'
 import { DbInsert } from '@/utils/supabase/types'
-import { CheckboxField } from '@components/CheckboxField'
-import { FileField } from '@components/FileField'
-import { SelectField } from '@components/SelectField'
-import { TextField } from '@components/TextField'
+import { CheckboxField } from '@components/forms/CheckboxField'
+import { FileField } from '@components/forms/FileField'
+import { DateField } from '@components/forms/OLDDateField'
+import { SelectField } from '@components/forms/SelectField'
+import { TextField } from '@components/forms/TextField'
 import { useCallback, useEffect, useState, useTransition } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 import { addCandidate } from './actions'
