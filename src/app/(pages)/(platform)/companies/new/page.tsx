@@ -9,6 +9,7 @@ import { addCompany } from './actions'
 import './page.css'
 
 const NewCompanyPage = () => {
+  // Hooks
   const methods = useForm<DbInsert<'companies'>>({
     defaultValues: {
       name: 'Facebook',
@@ -17,12 +18,13 @@ const NewCompanyPage = () => {
     },
   })
 
-  const [fileName, setFileName] = useState<string>('')
-
-  const [company, setCompany] = useState<Awaited<ReturnType<typeof addCompany>>>()
-
   const [isPending, startTransition] = useTransition()
 
+  // States
+  const [fileName, setFileName] = useState('')
+  const [company, setCompany] = useState<Awaited<ReturnType<typeof addCompany>>>()
+
+  // Effects
   useEffect(() => {
     setFileName(crypto.randomUUID())
   }, [])
@@ -34,6 +36,7 @@ const NewCompanyPage = () => {
     setFileName(crypto.randomUUID())
   }, [company])
 
+  // Render
   return (
     <FormProvider {...methods}>
       <form
