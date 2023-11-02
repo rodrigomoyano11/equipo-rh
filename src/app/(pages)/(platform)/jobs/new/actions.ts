@@ -1,29 +1,18 @@
-/* eslint-disable no-console */
-
 'use server'
 import { getSupabase } from '@/utils/supabase/server'
-import { AddJobAction, AddJobRequest } from './types'
-import { getObjectFromFormData } from '@/utils/getObjectFromFormData/util'
+import { DbInsert } from '@/utils/supabase/types'
+import { AddJobRequest } from './types'
 
-const addJob: AddJobAction = async (_, formData) => {
-  if (!formData) return undefined
-
+const addJob = async (data: DbInsert<'jobs'>) => {
   const supabase = getSupabase()
   const table = supabase.from('jobs')
 
-  const data = getObjectFromFormData<AddJobRequest>(formData)
-
   const response = await table.insert([data]).select()
 
-  if (response.error) {
-    console.error("Action 'addJob'", response.error)
-    return undefined
-  }
+  if (response.error) return null
 
   const [job] = response.data
-
   const { created_at: __, id: ___, ...restOfJob } = job
-
   return restOfJob
 }
 
@@ -33,10 +22,7 @@ const getCompanies = async () => {
 
   const response = await table.select('id, name')
 
-  if (response.error) {
-    console.error("Action 'getCompanies'", response.error)
-    return []
-  }
+  if (response.error) return []
 
   return response.data
 }
