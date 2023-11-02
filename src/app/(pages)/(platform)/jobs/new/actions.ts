@@ -1,7 +1,7 @@
 'use server'
+
 import { getSupabase } from '@/utils/supabase/server'
 import { DbInsert } from '@/utils/supabase/types'
-import { AddJobRequest } from './types'
 
 const addJob = async (data: DbInsert<'jobs'>) => {
   const supabase = getSupabase()
@@ -23,9 +23,7 @@ const getCompanies = async () => {
   const response = await table.select('id, name')
 
   if (response.error) return []
-
   return response.data
 }
 
 export { addJob, getCompanies }
-export type { AddJobRequest }

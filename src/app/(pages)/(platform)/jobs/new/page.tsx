@@ -1,9 +1,9 @@
 'use client'
 
-import { NumberField } from '@/app/_components/NumberField'
-import { SelectField } from '@/app/_components/SelectField'
-import { ItemProps } from '@/app/_components/SelectField/Item'
 import { DbInsert } from '@/utils/supabase/types'
+import { NumberField } from '@components/NumberField'
+import { SelectField } from '@components/SelectField'
+import { ItemProps } from '@components/SelectField/Item'
 import { TextField } from '@components/TextField'
 import { useEffect, useState, useTransition } from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
@@ -16,6 +16,7 @@ const visibilities: { label: string; value: DbInsert<'jobs'>['visibility'] }[] =
 ]
 
 const NewJobPage = () => {
+  // Hooks
   const methods = useForm<DbInsert<'jobs'>>({
     defaultValues: {
       title: 'Desarrollador',
@@ -27,10 +28,11 @@ const NewJobPage = () => {
     },
   })
 
+  const [isPending, startTransition] = useTransition()
+
+  // States
   const [companies, setCompanies] = useState<ItemProps[]>([])
   const [job, setJob] = useState<Awaited<ReturnType<typeof addJob>>>()
-
-  const [isPending, startTransition] = useTransition()
 
   // Methods
   const setCompanyOptions = async () => {
@@ -58,11 +60,12 @@ const NewJobPage = () => {
           startTransition(() => void addJob(data).then(setJob))
         })}>
         <h1>Crear Oferta de Trabajo</h1>
+
         <TextField label="Título" name="title" />
 
         <TextField label="Descripción" name="description" />
 
-        <NumberField defaultValue="1000" label="Salario" name="salary" />
+        <NumberField label="Salario" name="salary" />
 
         <SelectField label="Visibilidad" name="visibility" options={visibilities} />
 
