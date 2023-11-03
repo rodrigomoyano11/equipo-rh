@@ -22,7 +22,15 @@ const isSection = (option: SelectFieldOption): option is SectionProps => 'items'
 
 const SelectField: FieldComponent<SelectFieldProps> = (props) => {
   // Props
-  const { name, label, description, placeholder, isDisabled, options, className } = props
+  const {
+    name,
+    label,
+    description,
+    placeholder = 'Selecciona una opción',
+    isDisabled,
+    options,
+    className = '',
+  } = props
 
   // Hooks
   const id = useId()
