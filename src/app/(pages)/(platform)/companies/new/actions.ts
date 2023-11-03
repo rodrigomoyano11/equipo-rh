@@ -15,7 +15,7 @@ const addCompany = async (data: Schema) => {
   if (response.error) return null
 
   const [company] = response.data
-  const { created_at: __, id: ___, ...restOfCompany } = company
+  const { createdAt: __, id: ___, ...restOfCompany } = company
   return restOfCompany
 }
 

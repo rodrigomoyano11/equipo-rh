@@ -5,8 +5,8 @@ const options = {
     { value: 'other', label: 'Otro' },
   ],
   canRelocate: [
-    { value: "true", label: 'Sí' },
-    { value: "false", label: 'No' },
+    { value: 'true', label: 'Sí' },
+    { value: 'false', label: 'No' },
   ],
   educationLevel: [
     { value: 'primary', label: 'Primario' },
@@ -17,20 +17,27 @@ const options = {
   ],
   educationStatus: [
     { value: 'complete', label: 'Completo' },
-    { value: 'in_progress', label: 'En curso' },
+    { value: 'inProgress', label: 'En curso' },
     { value: 'incomplete', label: 'Incompleto' },
   ],
   experienceLevel: [
-    { value: 'need_to_be_taught', label: 'Necesito que me enseñen' },
-    { value: 'can_do_with_help', label: 'Puedo hacerlo con ayuda' },
-    { value: 'can_do_alone', label: 'Puedo hacerlo solo' },
-    { value: 'can_train_others', label: 'Puedo entrenar a otros' },
-    { value: 'have_trained_others', label: 'He entrenado a otros' },
+    { value: 'needToBeTaught', label: 'Necesito que me enseñen' },
+    { value: 'canDoWithHelp', label: 'Puedo hacerlo con ayuda' },
+    { value: 'canDoAlone', label: 'Puedo hacerlo solo' },
+    { value: 'canTrainOthers', label: 'Puedo entrenar a otros' },
+    { value: 'haveTrainedOthers', label: 'He entrenado a otros' },
   ],
   languages: [
     { value: 'spanish', label: 'Español' },
     { value: 'english', label: 'Inglés' },
     { value: 'portuguese', label: 'Portugués' },
+    { value: 'french', label: 'Francés' },
+    { value: 'italian', label: 'Italiano' },
+    { value: 'german', label: 'Alemán' },
+    { value: 'chinese', label: 'Chino' },
+    { value: 'japanese', label: 'Japonés' },
+    { value: 'russian', label: 'Ruso' },
+    { value: 'other', label: 'Otro' },
   ],
 }
 

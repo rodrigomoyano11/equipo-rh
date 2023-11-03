@@ -16,7 +16,7 @@ const addApplication = async (data: Schema) => {
 
   const [application] = response.data
 
-  const { created_at: __, id: ___, ...restOfApplication } = application
+  const { createdAt: __, id: ___, ...restOfApplication } = application
 
   return restOfApplication
 }
@@ -25,7 +25,7 @@ const getCandidates = async () => {
   const supabase = getSupabase()
   const table = supabase.from('candidates')
 
-  const response = await table.select('id, first_name, last_name')
+  const response = await table.select('id, firstName, lastName')
 
   if (response.error) return []
   return response.data

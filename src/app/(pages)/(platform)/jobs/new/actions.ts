@@ -15,7 +15,7 @@ const addJob = async (data: Schema) => {
   if (response.error) return null
 
   const [job] = response.data
-  const { created_at: __, id: ___, ...restOfJob } = job
+  const { createdAt: __, id: ___, ...restOfJob } = job
   return restOfJob
 }
 

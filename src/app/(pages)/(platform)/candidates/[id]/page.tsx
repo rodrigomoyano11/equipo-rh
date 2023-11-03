@@ -15,7 +15,7 @@ const CandidatePage = async ({ params }: CandidatePageProps) => {
 
       <ul>
         <li className="item">
-          <h2>{`${candidate.first_name} ${candidate.last_name}`}</h2>
+          <h2>{`${candidate.firstName} ${candidate.lastName}`}</h2>
           <div className="content">
             <div>
               <span className="label">Email</span>
@@ -24,9 +24,9 @@ const CandidatePage = async ({ params }: CandidatePageProps) => {
           </div>
 
           <Image
-            alt={`${candidate.first_name} ${candidate.last_name}`}
+            alt={`${candidate.firstName} ${candidate.lastName}`}
             height={100}
-            src={candidate.profile_picture ?? ''}
+            src={candidate.profilePicture ?? ''}
             width={100}
           />
         </li>

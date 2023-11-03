@@ -21,7 +21,7 @@ const ApplicationsPage = async () => {
                 <div>
                   <span className="label">Name</span>
                   <span>
-                    {application.candidates?.first_name} {application.candidates?.last_name}
+                    {application.candidates?.firstName} {application.candidates?.lastName}
                   </span>
                 </div>
 
@@ -31,9 +31,9 @@ const ApplicationsPage = async () => {
                 </div>
 
                 <Image
-                  alt={`${application.candidates?.first_name} ${application.candidates?.last_name}`}
+                  alt={`${application.candidates?.firstName} ${application.candidates?.lastName}`}
                   height={50}
-                  src={application.candidates?.profile_picture ?? ''}
+                  src={application.candidates?.profilePicture ?? ''}
                   width={50}
                 />
               </div>

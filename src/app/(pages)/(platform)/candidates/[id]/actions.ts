@@ -7,7 +7,7 @@ const getCandidate = async (id: string) => {
   const table = supabase.from('candidates')
 
   const response = await table
-    .select('first_name, last_name, profile_picture, email')
+    .select('firstName, lastName, profilePicture, email')
     .eq('id', id)
     .single()
 

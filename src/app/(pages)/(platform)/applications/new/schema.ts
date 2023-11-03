@@ -1,13 +1,11 @@
-/* eslint-disable camelcase */
-
 import { z } from 'zod'
 
 const schema = z.object({
   id: z.string().optional(),
-  created_at: z.string().optional(),
+  createdAt: z.string().optional(),
 
-  candidate_id: z.string(),
-  job_id: z.string(),
+  candidateId: z.string(),
+  jobId: z.string(),
 })
 
 type Schema = z.infer<typeof schema>

@@ -19,9 +19,9 @@ const getApplications = async () => {
     ),
 
     candidates (
-      first_name,
-      last_name,
-      profile_picture,
+      firstName,
+      lastName,
+      profilePicture,
       email
     )
     `,

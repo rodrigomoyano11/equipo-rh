@@ -1,4 +1,3 @@
-/* eslint-disable camelcase */
 'use client'
 
 import { Form, SubmitHandler } from '@/app/_components/forms/Form'
@@ -50,25 +49,25 @@ const NewCandidatePage = () => {
 
   // Base Props
   const defaultValues: Schema = {
-    first_name: 'John',
-    last_name: 'Doe',
-    identification_type: 'dni',
-    identification_number: '32546678',
+    firstName: 'John',
+    lastName: 'Doe',
+    identificationType: 'dni',
+    identificationNumber: '32546678',
     birthdate: '1995-11-14',
     email: '',
     phone: 3546546546,
     country: 'Argentina',
     state: 'Buenos Aires',
     locality: 'CABA',
-    can_relocate: 'true' as unknown as boolean,
+    canRelocate: 'true' as unknown as boolean,
     address: 'Av. Corrientes 5274',
-    education_level: 'primary',
-    education_status: 'incomplete',
-    experience_level: 'need_to_be_taught',
-    best_skills: 'Me gusta mucho programar, y tengo experiencia en React y Node.js',
-    why_hire_you: 'Soy muy responsable y me gusta trabajar en equipo',
-    professional_profile: 'Soy un desarrollador web con 5 años de experiencia en React y Node.js',
-    accepted_terms: '' as unknown as boolean,
+    educationLevel: 'primary',
+    educationStatus: 'incomplete',
+    experienceLevel: 'needToBeTaught',
+    bestSkills: 'Me gusta mucho programar, y tengo experiencia en React y Node.js',
+    whyHireYou: 'Soy muy responsable y me gusta trabajar en equipo',
+    professionalProfile: 'Soy un desarrollador web con 5 años de experiencia en React y Node.js',
+    acceptedTerms: '' as unknown as boolean,
     languages: 'spanish' as unknown as string[],
   }
 
@@ -80,17 +79,17 @@ const NewCandidatePage = () => {
       <div className="basic">
         <h2>Datos básicos</h2>
 
-        <TextField autoComplete="family-name" label="Apellido" name="first_name" />
+        <TextField autoComplete="family-name" label="Apellido" name="firstName" />
 
-        <TextField autoComplete="given-name" label="Nombre" name="last_name" />
+        <TextField autoComplete="given-name" label="Nombre" name="lastName" />
 
         <SelectField
           label="Tipo de documento"
-          name="identification_type"
+          name="identificationType"
           options={options.identificationType}
         />
 
-        <TextField label="Número de documento" name="identification_number" />
+        <TextField label="Número de documento" name="identificationNumber" />
 
         <DateField label="Fecha de nacimiento" name="birthdate" />
       </div>
@@ -134,7 +133,7 @@ const NewCandidatePage = () => {
 
         <SelectField
           label="¿Estás dispuesto a reubicarte?"
-          name="can_relocate"
+          name="canRelocate"
           options={options.canRelocate}
         />
       </div>
@@ -144,13 +143,13 @@ const NewCandidatePage = () => {
 
         <SelectField
           label="Nivel de educación"
-          name="education_level"
+          name="educationLevel"
           options={options.educationLevel}
         />
 
         <SelectField
           label="Estado de educación"
-          name="education_status"
+          name="educationStatus"
           options={options.educationStatus}
         />
       </div>
@@ -160,13 +159,13 @@ const NewCandidatePage = () => {
 
         <SelectField
           label="Nivel de experiencia"
-          name="experience_level"
+          name="experienceLevel"
           options={options.experienceLevel}
         />
 
-        <TextField label="¿Cuáles son tus mejores habilidades?" name="best_skills" />
+        <TextField label="¿Cuáles son tus mejores habilidades?" name="bestSkills" />
 
-        <TextField label="¿Por qué deberíamos contratarte?" name="why_hire_you" />
+        <TextField label="¿Por qué deberíamos contratarte?" name="whyHireYou" />
       </div>
 
       <div className="profile">
@@ -176,16 +175,23 @@ const NewCandidatePage = () => {
           allowedFileTypes={['image/png', 'image/jpeg']}
           bucket="profile-pictures"
           label="Foto de perfil"
-          name="profile_picture"
+          name="profilePicture"
         />
 
-        <TextField label="Perfil profesional" name="professional_profile" />
+        <TextField label="Perfil profesional" name="professionalProfile" />
 
         <SelectField label="Idiomas" name="languages" options={options.languages} />
 
+        <FileField
+          allowedFileTypes={['application/pdf']}
+          bucket="resumes"
+          label="Currículum"
+          name="resume"
+        />
+
         <SelectField
           label="Acepto los términos y condiciones"
-          name="accepted_terms"
+          name="acceptedTerms"
           options={[
             { label: 'Acepto', value: 'true' },
             { label: 'No acepto', value: 'false' },

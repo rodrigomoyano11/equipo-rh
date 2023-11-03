@@ -1,4 +1,3 @@
-/* eslint-disable camelcase */
 'use client'
 
 import { Form, SubmitHandler } from '@/app/_components/forms/Form'
@@ -53,7 +52,6 @@ const NewJobPage = () => {
         description: 'Desarrollador de Software',
         salary: 1000,
         visibility: options.visibility[0].value,
-        // company_id: '',
       }}
       onSubmit={handleSubmit}>
       <h1>Crear Oferta de Trabajo</h1>
@@ -66,7 +64,7 @@ const NewJobPage = () => {
 
       <SelectField label="Visibilidad" name="visibility" options={options.visibility} />
 
-      <SelectField label="Empresa" name="company_id" options={companies} />
+      <SelectField label="Empresa" name="companyId" options={companies} />
     </Form>
   )
 }

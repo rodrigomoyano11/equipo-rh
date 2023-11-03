@@ -13,7 +13,7 @@ const CandidatesPage = async () => {
       <ul>
         {candidates.map((candidate) => (
           <li key={candidate.id} className="item">
-            <h2>{`${candidate.first_name} ${candidate.last_name}`}</h2>
+            <h2>{`${candidate.firstName} ${candidate.lastName}`}</h2>
             <div className="content">
               <div>
                 <span className="label">Email</span>
@@ -22,9 +22,9 @@ const CandidatesPage = async () => {
             </div>
 
             <Image
-              alt={`${candidate.first_name} ${candidate.last_name}`}
+              alt={`${candidate.firstName} ${candidate.lastName}`}
               height={100}
-              src={candidate.profile_picture ?? ''}
+              src={candidate.profilePicture ?? ''}
               width={100}
             />
 

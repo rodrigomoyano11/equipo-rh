@@ -1,5 +1,3 @@
-/* eslint-disable camelcase */
-
 'use client'
 
 import { Form, SubmitHandler } from '@components/forms/Form'
@@ -30,8 +28,8 @@ const NewApplicationPage = () => {
 
   const setCandidateOptions = async () => {
     const items = await getCandidates()
-    const adaptedCandidates = items.map(({ id, first_name, last_name }) => ({
-      label: `${first_name} ${last_name}`,
+    const adaptedCandidates = items.map(({ id, firstName, lastName }) => ({
+      label: `${firstName} ${lastName}`,
       value: id,
     }))
 
@@ -59,7 +57,7 @@ const NewApplicationPage = () => {
   }, [application])
 
   // Base Props
-  const defaultValues = { candidate_id: candidates[0]?.value, job_id: jobs[0]?.value }
+  const defaultValues = { candidateId: candidates[0]?.value, jobId: jobs[0]?.value }
 
   // Render
   if (!candidates.length || !jobs.length) return <h1>Cargando...</h1>
@@ -67,9 +65,9 @@ const NewApplicationPage = () => {
     <Form defaultValues={defaultValues} schema={schema} onSubmit={handleSubmit}>
       <h1>Aplicar a Oferta de Trabajo</h1>
 
-      <SelectField label="Oferta de Trabajo" name="job_id" options={jobs} />
+      <SelectField label="Oferta de Trabajo" name="jobId" options={jobs} />
 
-      <SelectField label="Candidato" name="candidate_id" options={candidates} />
+      <SelectField label="Candidato" name="candidateId" options={candidates} />
     </Form>
   )
 }

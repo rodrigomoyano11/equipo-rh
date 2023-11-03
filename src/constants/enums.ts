@@ -1,13 +1,13 @@
 const EducationLevel = ['postgraduate', 'primary', 'secondary', 'tertiary', 'university'] as const
 
-const EducationStatus = ['complete', 'in_progress', 'incomplete'] as const
+const EducationStatus = ['complete', 'inProgress', 'incomplete'] as const
 
 const ExperienceLevel = [
-  'can_do_alone',
-  'can_do_with_help',
-  'can_train_others',
-  'have_trained_others',
-  'need_to_be_taught',
+  'canDoAlone',
+  'canDoWithHelp',
+  'canTrainOthers',
+  'haveTrainedOthers',
+  'needToBeTaught',
 ] as const
 
 const IdentificationType = ['dni', 'other', 'passport'] as const

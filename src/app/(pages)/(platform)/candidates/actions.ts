@@ -6,7 +6,7 @@ const getCandidates = async () => {
   const supabase = getSupabase()
   const table = supabase.from('candidates')
 
-  const response = await table.select('id, first_name, last_name, profile_picture, email')
+  const response = await table.select('id, firstName, lastName, profilePicture, email')
 
   if (response.error) return []
   return response.data

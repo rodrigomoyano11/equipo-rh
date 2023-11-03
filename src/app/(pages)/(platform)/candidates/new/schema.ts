@@ -1,5 +1,3 @@
-/* eslint-disable camelcase */
-
 import {
   EducationLevel,
   EducationStatus,
@@ -18,12 +16,12 @@ import { z } from 'zod'
 
 const schema = z.object({
   id: z.string().optional(),
-  created_at: z.string().optional(),
+  createdAt: z.string().optional(),
 
-  last_name: smallString,
-  first_name: smallString,
-  identification_number: z.string(),
-  identification_type: z.enum(IdentificationType),
+  lastName: smallString,
+  firstName: smallString,
+  identificationNumber: z.string(),
+  identificationType: z.enum(IdentificationType),
   birthdate: z.string().optional(),
 
   email: z.string().email(),
@@ -33,19 +31,20 @@ const schema = z.object({
   state: z.string().optional(),
   locality: z.string().optional(),
   address: mediumString.optional(),
-  can_relocate: stringToBoolean(z.boolean().optional()),
+  canRelocate: stringToBoolean(z.boolean().optional()),
 
-  education_level: z.enum(EducationLevel),
-  education_status: z.enum(EducationStatus),
+  educationLevel: z.enum(EducationLevel),
+  educationStatus: z.enum(EducationStatus),
 
-  experience_level: z.enum(ExperienceLevel),
-  best_skills: largeString,
-  why_hire_you: largeString,
+  experienceLevel: z.enum(ExperienceLevel),
+  bestSkills: largeString,
+  whyHireYou: largeString,
 
-  professional_profile: largeString.optional(),
-  profile_picture: z.string().url().optional(),
+  professionalProfile: largeString.optional(),
+  profilePicture: z.string().url().optional(),
   languages: stringOrArrayToStringArray(z.string().array()),
-  accepted_terms: stringToBoolean(z.boolean()),
+  resume: z.string().url().optional(),
+  acceptedTerms: stringToBoolean(z.boolean()),
 })
 
 type Schema = z.infer<typeof schema>

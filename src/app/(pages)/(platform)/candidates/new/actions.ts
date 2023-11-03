@@ -15,7 +15,7 @@ const addCandidate = async (data: Schema) => {
   if (response.error) return null
 
   const [candidate] = response.data
-  const { created_at: __, id: ___, ...restOfCandidate } = candidate
+  const { createdAt: __, id: ___, ...restOfCandidate } = candidate
   return restOfCandidate
 }
 
