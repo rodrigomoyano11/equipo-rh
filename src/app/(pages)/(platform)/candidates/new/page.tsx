@@ -2,6 +2,7 @@
 'use client'
 
 import { Form, SubmitHandler } from '@/app/_components/forms/Form'
+import { useLocations } from '@/app/_hooks/useLocations'
 import { FileField } from '@components/forms/FileField'
 import { DateField } from '@components/forms/OLDDateField'
 import { SelectField } from '@components/forms/SelectField'
@@ -13,6 +14,17 @@ import './page.css'
 import { Schema, schema } from './schema'
 
 const NewCandidatePage = () => {
+  // Hooks
+  const {
+    countries,
+    localities,
+    states,
+    getCountries,
+    handleCountryChange,
+    handleLocalityChange,
+    handleStateChange,
+  } = useLocations()
+
   // States
   const [candidate, setCandidate] = useState<Awaited<ReturnType<typeof addCandidate>>>()
 
@@ -26,6 +38,11 @@ const NewCandidatePage = () => {
   }
 
   // Effects
+  useEffect(() => {
+    void getCountries()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+
   useEffect(() => {
     if (!candidate) return
     console.log({ candidate })
@@ -50,7 +67,6 @@ const NewCandidatePage = () => {
     experience_level: 'need_to_be_taught',
     best_skills: 'Me gusta mucho programar, y tengo experiencia en React y Node.js',
     why_hire_you: 'Soy muy responsable y me gusta trabajar en equipo',
-    profile_picture: '',
     professional_profile: 'Soy un desarrollador web con 5 años de experiencia en React y Node.js',
     accepted_terms: '' as unknown as boolean,
     languages: 'spanish' as unknown as string[],
@@ -91,21 +107,27 @@ const NewCandidatePage = () => {
         <h2>Ubicación</h2>
 
         <SelectField
+          isDisabled={countries.length === 0}
           label="País"
           name="country"
-          options={[{ value: 'Argentina', label: 'Argentina' }]}
+          options={countries}
+          onChange={handleCountryChange}
         />
 
         <SelectField
+          isDisabled={states.length === 0}
           label="Provincia"
           name="state"
-          options={[{ value: 'Buenos Aires', label: 'Buenos Aires' }]}
+          options={states}
+          onChange={handleStateChange}
         />
 
         <SelectField
+          isDisabled={localities.length === 0}
           label="Localidad"
           name="locality"
-          options={[{ value: 'CABA', label: 'CABA' }]}
+          options={localities}
+          onChange={handleLocalityChange}
         />
 
         <TextField autoComplete="street-address" label="Dirección" name="address" />

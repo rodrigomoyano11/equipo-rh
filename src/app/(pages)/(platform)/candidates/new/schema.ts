@@ -29,9 +29,9 @@ const schema = z.object({
   email: z.string().email(),
   phone: stringToNumber(z.number().optional()),
 
-  country: smallString,
-  state: smallString.optional(),
-  locality: smallString.optional(),
+  country: z.string(),
+  state: z.string().optional(),
+  locality: z.string().optional(),
   address: mediumString.optional(),
   can_relocate: stringToBoolean(z.boolean().optional()),
 
