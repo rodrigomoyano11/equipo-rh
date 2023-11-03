@@ -1,13 +1,16 @@
 'use server'
 
 import { getSupabase } from '@/utils/supabase/server'
-import { DbInsert } from '@/utils/supabase/types'
+import { Schema, schema } from './schema'
 
-const addApplication = async (data: DbInsert<'applications'>) => {
+const addApplication = async (data: Schema) => {
+  const validated = schema.safeParse(data)
+  if (!validated.success) throw new Error(validated.error.message)
+
   const supabase = getSupabase()
   const table = supabase.from('applications')
 
-  const response = await table.insert([data]).select()
+  const response = await table.insert([validated.data]).select()
 
   if (response.error) return null
 

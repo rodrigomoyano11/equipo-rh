@@ -9,7 +9,7 @@ const ApplicationsPage = async () => {
   return (
     <div>
       <h1>Applications</h1>
-      
+
       <ul>
         {applications.map((application) => (
           <li key={application.id} className="item">

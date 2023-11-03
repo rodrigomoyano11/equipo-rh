@@ -1,20 +1,18 @@
-/* eslint-disable camelcase */
-
 'use server'
 
 import { getSupabase } from '@/utils/supabase/server'
-import { DbInsert } from '@/utils/supabase/types'
+import { Schema, schema } from './schema'
 
-const addCandidate = async (data: DbInsert<'candidates'>) => {
+const addCandidate = async (data: Schema) => {
+  const validated = schema.safeParse(data)
+  if (!validated.success) throw new Error(validated.error.message)
+
   const supabase = getSupabase()
   const table = supabase.from('candidates')
 
-  const response = await table.insert([data]).select()
+  const response = await table.insert([validated.data]).select()
 
-  if (response.error) {
-    console.error("Action 'addCandidate'", response.error)
-    return undefined
-  }
+  if (response.error) return null
 
   const [candidate] = response.data
   const { created_at: __, id: ___, ...restOfCandidate } = candidate

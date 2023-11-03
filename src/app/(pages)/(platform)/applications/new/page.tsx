@@ -2,22 +2,15 @@
 
 'use client'
 
-import { DbInsert } from '@/utils/supabase/types'
+import { Form, SubmitHandler } from '@components/forms/Form'
 import { SelectField } from '@components/forms/SelectField'
 import { ItemProps } from '@components/forms/SelectField/Item'
-import { useEffect, useState, useTransition } from 'react'
-import { FormProvider, useForm } from 'react-hook-form'
+import { useEffect, useState } from 'react'
 import { addApplication, getCandidates, getJobs } from './actions'
 import './page.css'
+import { Schema, schema } from './schema'
 
 const NewApplicationPage = () => {
-  // Hooks
-  const methods = useForm<DbInsert<'applications'>>({
-    defaultValues: {},
-  })
-
-  const [isPending, startTransition] = useTransition()
-
   // States
   const [candidates, setCandidates] = useState<ItemProps[]>([])
   const [jobs, setJobs] = useState<ItemProps[]>([])
@@ -45,6 +38,15 @@ const NewApplicationPage = () => {
     setCandidates(adaptedCandidates)
   }
 
+  // Handlers
+  const handleSubmit: SubmitHandler<Schema> = async (formData) => {
+    if (!formData.isValid) return
+
+    const addedApplication = await addApplication(formData.data)
+
+    setApplication(addedApplication)
+  }
+
   // Effects
   useEffect(() => {
     void setJobOptions()
@@ -56,23 +58,19 @@ const NewApplicationPage = () => {
     console.log({ application })
   }, [application])
 
+  // Base Props
+  const defaultValues = { candidate_id: candidates[0]?.value, job_id: jobs[0]?.value }
+
   // Render
   if (!candidates.length || !jobs.length) return <h1>Cargando...</h1>
   return (
-    <FormProvider {...methods}>
-      <form
-        onSubmit={methods.handleSubmit((data) => {
-          startTransition(() => void addApplication(data).then(setApplication))
-        })}>
-        <h1>Aplicar a Oferta de Trabajo</h1>
+    <Form defaultValues={defaultValues} schema={schema} onSubmit={handleSubmit}>
+      <h1>Aplicar a Oferta de Trabajo</h1>
 
-        <SelectField label="Oferta de Trabajo" name="job_id" options={jobs} />
+      <SelectField label="Oferta de Trabajo" name="job_id" options={jobs} />
 
-        <SelectField label="Candidato" name="candidate_id" options={candidates} />
-
-        <button type="submit">{isPending ? 'Enviando...' : 'Enviar'}</button>
-      </form>
-    </FormProvider>
+      <SelectField label="Candidato" name="candidate_id" options={candidates} />
+    </Form>
   )
 }
 
