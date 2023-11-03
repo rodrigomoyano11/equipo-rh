@@ -10,6 +10,7 @@ type SelectFieldOption = XOR<Item, Section>
 type SelectFieldProps = FieldProps & {
   placeholder?: string
   options: SelectFieldOption[]
+  onChange?: (value: string) => Promise<void> | void
 }
 
 export type { SelectFieldOption, SelectFieldProps }

@@ -30,6 +30,7 @@ const SelectField: FieldComponent<SelectFieldProps> = (props) => {
     isDisabled,
     options,
     className = '',
+    onChange: onChangeProp = () => {},
   } = props
 
   // Hooks
@@ -58,7 +59,11 @@ const SelectField: FieldComponent<SelectFieldProps> = (props) => {
   const ariaSelectFieldProps: AriaSelectFieldProps<ItemProps> = {
     isDisabled: disabled,
     onBlur,
-    onSelectionChange: onChange,
+    onSelectionChange: async (value) => {
+      await onChangeProp(String(value))
+
+      onChange(value)
+    },
     isInvalid: Boolean(errorMessage),
     selectedKey: value,
     name,
