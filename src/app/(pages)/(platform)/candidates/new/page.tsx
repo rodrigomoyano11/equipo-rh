@@ -48,13 +48,12 @@ const NewCandidatePage = () => {
   }, [candidate])
 
   // Base Props
-  const defaultValues: Schema = {
+  const defaultValues: Partial<Schema> = {
     firstName: 'John',
     lastName: 'Doe',
     identificationType: 'dni',
     identificationNumber: '32546678',
     birthdate: '1995-11-14',
-    email: '',
     phone: 3546546546,
     country: 'Argentina',
     state: 'Buenos Aires',
@@ -67,7 +66,7 @@ const NewCandidatePage = () => {
     bestSkills: 'Me gusta mucho programar, y tengo experiencia en React y Node.js',
     whyHireYou: 'Soy muy responsable y me gusta trabajar en equipo',
     professionalProfile: 'Soy un desarrollador web con 5 años de experiencia en React y Node.js',
-    acceptedTerms: '' as unknown as boolean,
+    acceptedTerms: 'true' as unknown as boolean,
     languages: 'spanish' as unknown as string[],
   }
 
@@ -106,23 +105,15 @@ const NewCandidatePage = () => {
         <h2>Ubicación</h2>
 
         <SelectField
-          isDisabled={countries.length === 0}
           label="País"
           name="country"
           options={countries}
           onChange={handleCountryChange}
         />
 
-        <SelectField
-          isDisabled={states.length === 0}
-          label="Provincia"
-          name="state"
-          options={states}
-          onChange={handleStateChange}
-        />
+        <SelectField label="Provincia" name="state" options={states} onChange={handleStateChange} />
 
         <SelectField
-          isDisabled={localities.length === 0}
           label="Localidad"
           name="locality"
           options={localities}
