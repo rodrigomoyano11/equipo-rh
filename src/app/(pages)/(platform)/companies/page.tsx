@@ -1,7 +1,7 @@
-import { getCompanies } from './actions'
+import { Link } from '@/app/_components/ui/Link'
 import Image from 'next/image'
+import { getCompanies } from './actions'
 import './page.css'
-import Link from 'next/link'
 
 const CompaniesPage = async () => {
   const companies = await getCompanies()

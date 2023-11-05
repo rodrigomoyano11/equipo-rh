@@ -1,5 +1,5 @@
+import { Link } from '@/app/_components/ui/Link'
 import Image from 'next/image'
-import Link from 'next/link'
 import { getSavedJobs } from './actions'
 import './page.css'
 
