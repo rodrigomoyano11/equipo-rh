@@ -1,0 +1,246 @@
+@layer components {
+  @scope (.button) {
+    & {
+      display: flex;
+      flex: 1;
+      gap: var(--gap);
+      align-items: center;
+      justify-content: center;
+
+      padding-block: var(--padding-block);
+      padding-inline: var(--padding-inline);
+
+      font-size: var(--font-size);
+      font-weight: var(--font-weight-bold);
+      color: var(--text-color);
+      text-align: center;
+      text-transform: uppercase;
+
+      appearance: none;
+      background-color: var(--background-color);
+      border: var(--default-border);
+      border-color: var(--border-color);
+      border-radius: var(--border-radius);
+      outline: none;
+
+      transition: all 0.2s ease-in-out;
+    }
+
+    &.link {
+      all: unset;
+      text-decoration: none;
+    }
+
+    &[data-hovered] {
+      cursor: pointer;
+      color: var(--text-color);
+      background-color: var(--background-color);
+      border-color: var(--border-color);
+    }
+
+    &[data-pressed] {
+      background-color: var(--background-color);
+      border-color: var(--border-color);
+    }
+
+    &[data-disabled] {
+      cursor: not-allowed;
+      color: var(--text-color-disabled);
+      background-color: var(--background-color-disabled);
+      border-color: var(--border-color-disabled);
+    }
+
+    &[data-focus-visible] {
+      border: var(--border-width-1) solid var(--blue-color);
+      box-shadow: 0 0 0 var(--border-width-1) var(--blue-color);
+    }
+
+    /* Colors by Variant */
+    &.filled {
+      --text-color-disabled: var(--text-color-1);
+      --border-color-disabled: var(--border-color-1);
+      --background-color-disabled: var(--background-color-2);
+
+      &.accent {
+        --text-color: var(--inverted-text-color-1);
+        --background-color: var(--accent-color-2);
+        --border-color: var(--accent-color-2);
+
+        &[data-hovered] {
+          --background-color: var(--accent-color-1);
+          --border-color: var(--accent-color-1);
+        }
+
+        &[data-pressed] {
+          --background-color: var(--accent-color-3);
+          --border-color: var(--accent-color-3);
+        }
+      }
+
+      &.black {
+        --text-color: var(--inverted-text-color-1);
+        --background-color: var(--text-color-3);
+        --border-color: var(--text-color-3);
+
+        &[data-hovered] {
+          --text-color: var(--inverted-text-color-1);
+          --background-color: var(--accent-color-2);
+          --border-color: var(--accent-color-2);
+        }
+
+        &[data-pressed] {
+          --text-color: var(--inverted-text-color-1);
+          --background-color: var(--accent-color-3);
+          --border-color: var(--accent-color-3);
+        }
+      }
+
+      &.white {
+        --text-color: var(--accent-color-2);
+        --background-color: var(--inverted-text-color-1);
+        --border-color: var(--inverted-text-color-1);
+
+        &[data-hovered] {
+          --text-color: var(--inverted-text-color-1);
+          --background-color: var(--accent-color-2);
+          --border-color: var(--accent-color-2);
+        }
+
+        &[data-pressed] {
+          --text-color: var(--inverted-text-color-1);
+          --background-color: var(--accent-color-3);
+          --border-color: var(--accent-color-3);
+        }
+      }
+    }
+
+    &.outline {
+      --text-color-disabled: var(--border-color-1);
+      --border-color-disabled: var(--border-color-1);
+      --background-color-disabled: transparent;
+
+      &.accent {
+        --text-color: var(--accent-color-2);
+        --background-color: transparent;
+        --border-color: var(--accent-color-2);
+
+        &[data-hovered] {
+          --text-color: var(--inverted-text-color-1);
+          --background-color: var(--accent-color-2);
+        }
+
+        &[data-pressed] {
+          --text-color: var(--inverted-text-color-1);
+          --background-color: var(--accent-color-3);
+          --border-color: var(--accent-color-3);
+        }
+      }
+
+      &.black {
+        --text-color: var(--text-color-3);
+        --background-color: transparent;
+        --border-color: var(--text-color-3);
+
+        &[data-hovered] {
+          --text-color: var(--inverted-text-color-1);
+          --background-color: var(--accent-color-2);
+          --border-color: var(--accent-color-2);
+        }
+
+        &[data-pressed] {
+          --text-color: var(--inverted-text-color-1);
+          --background-color: var(--accent-color-3);
+          --border-color: var(--accent-color-3);
+        }
+      }
+
+      &.white {
+        --text-color: var(--inverted-text-color-1);
+        --background-color: transparent;
+        --border-color: var(--inverted-text-color-1);
+
+        &[data-hovered] {
+          --text-color: var(--inverted-text-color-1);
+          --background-color: var(--accent-color-2);
+          --border-color: var(--accent-color-2);
+        }
+
+        &[data-pressed] {
+          --text-color: var(--inverted-text-color-1);
+          --background-color: var(--accent-color-3);
+          --border-color: var(--accent-color-3);
+        }
+      }
+    }
+
+    &.text {
+      --text-color-disabled: var(--border-color-1);
+      --border-color-disabled: transparent;
+      --background-color-disabled: transparent;
+
+      &.accent {
+        --text-color: var(--accent-color-2);
+        --background-color: transparent;
+        --border-color: transparent;
+
+        &[data-hovered] {
+          --text-color: var(--text-color-2);
+        }
+
+        &[data-pressed] {
+          --text-color: var(--accent-color-3);
+        }
+      }
+
+      &.black {
+        --text-color: var(--text-color-3);
+        --background-color: transparent;
+        --border-color: transparent;
+
+        &[data-hovered] {
+          --text-color: var(--accent-color-2);
+        }
+
+        &[data-pressed] {
+          --text-color: var(--accent-color-3);
+        }
+      }
+
+      &.white {
+        --text-color: var(--inverted-text-color-1);
+        --background-color: transparent;
+        --border-color: transparent;
+
+        &[data-hovered] {
+          --text-color: var(--accent-color-2);
+        }
+
+        &[data-pressed] {
+          --text-color: var(--accent-color-3);
+        }
+      }
+    }
+
+    /* Sizes */
+    &.small {
+      --padding-block: var(--space-2);
+      --padding-inline: var(--space-3);
+      --font-size: var(--level-2);
+      --gap: var(--space-1);
+    }
+
+    &.medium {
+      --padding-block: var(--space-3);
+      --padding-inline: var(--space-4);
+      --font-size: var(--level-3);
+      --gap: var(--space-2);
+    }
+
+    &.large {
+      --padding-block: var(--space-4);
+      --padding-inline: var(--space-5);
+      --font-size: var(--level-4);
+      --gap: var(--space-3);
+    }
+  }
+}
