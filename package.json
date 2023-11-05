@@ -58,11 +58,15 @@
     "stylelint-config-clean-order": "5.2.0",
     "stylelint-config-standard": "34.0.0",
     "stylelint-plugin-logical-css": "0.13.2",
+    "supabase": "1.110.1",
     "typescript": "5.2.2"
   },
   "lint-staged": {
     "*.{js,jsx,ts,tsx}": "eslint --fix",
     "*.{js,jsx,ts,tsx,css,html,json,md,yml}": "prettier --write",
     "*.css": "stylelint --fix"
-  }
+  },
+  "trustedDependencies": [
+    "supabase"
+  ]
 }
