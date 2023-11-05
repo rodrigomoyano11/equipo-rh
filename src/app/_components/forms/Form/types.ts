@@ -1,6 +1,6 @@
 import { PropsWithChildren } from 'react';
 import { DefaultValues, FieldErrors, FieldValues } from 'react-hook-form';
-import { ZodTypeAny } from 'zod';
+import { ZodType } from 'zod';
 
 type SubmitHandlerParams<Schema extends FieldValues> =
   | { isValid: false; errors: FieldErrors<Schema> }
@@ -11,7 +11,7 @@ type SubmitHandler<Schema extends FieldValues> = (
 ) => Promise<void>
 
 type FormProps<Schema extends FieldValues> = PropsWithChildren<{
-  schema: ZodTypeAny
+  schema: ZodType<Schema>
   className?: string
   defaultValues?: DefaultValues<Schema>
   onSubmit: SubmitHandler<Schema>
