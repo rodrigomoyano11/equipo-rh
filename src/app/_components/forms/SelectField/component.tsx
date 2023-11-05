@@ -1,7 +1,7 @@
 'use client'
 
 import { FieldComponent } from '@/types/forms'
-import { useId } from 'react'
+import { useEffect, useId, useState } from 'react'
 import {
   Button as AriaButton,
   Label as AriaLabel,
@@ -12,7 +12,8 @@ import {
   SelectValue as AriaSelectValue,
   Text as AriaText,
 } from 'react-aria-components'
-import { useController } from 'react-hook-form'
+import { useController, useFormContext } from 'react-hook-form'
+import { Icon } from '../../ui/Icon'
 import { Item, ItemProps } from './Item'
 import { Section, SectionProps } from './Section'
 import './styles.css'
@@ -36,7 +37,11 @@ const SelectField: FieldComponent<SelectFieldProps> = (props) => {
   // Hooks
   const id = useId()
 
+  const { resetField } = useFormContext()
   const { field, fieldState } = useController({ name, disabled: isDisabled })
+
+  // States
+  const [isOpen, setIsOpen] = useState(false)
 
   // Data
   const { value, disabled, onBlur, onChange, ref } = field
@@ -52,6 +57,11 @@ const SelectField: FieldComponent<SelectFieldProps> = (props) => {
     const { isDisabled, value } = option
     return isDisabled ? value : []
   })
+
+  // Effects
+  useEffect(() => {
+    resetField(name)
+  }, [name, options, resetField])
 
   // Render
   const ariaLabelProps = label ? { 'aria-labelledby': id } : { id, 'aria-label': name }
@@ -76,6 +86,7 @@ const SelectField: FieldComponent<SelectFieldProps> = (props) => {
       ref={ref}
       className={`select-field ${className}`}
       disabledKeys={disabledOptions}
+      onOpenChange={setIsOpen}
       {...ariaSelectFieldProps}>
       {label && (
         <AriaLabel className="label" htmlFor={id}>
@@ -86,16 +97,7 @@ const SelectField: FieldComponent<SelectFieldProps> = (props) => {
       <AriaButton className="input">
         <AriaSelectValue className="input-value" />
 
-        <span aria-hidden="true" className="input-icon">
-          <svg
-            fill="currentColor"
-            height="24"
-            viewBox="0 -960 960 960"
-            width="24"
-            xmlns="http://www.w3.org/2000/svg">
-            <path d="M480-345 240-585l56-56 184 184 184-184 56 56-240 240Z" />
-          </svg>
-        </span>
+        {isOpen ? <Icon name="expand_less" /> : <Icon name="expand_more" />}
       </AriaButton>
 
       {!errorMessage && description && (
