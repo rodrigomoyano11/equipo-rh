@@ -10,6 +10,7 @@ import {
   useForm,
 } from 'react-hook-form'
 import { FormProps, SubmitHandler } from './types'
+import { Button } from '../../ui/Button'
 
 const Form = <Schema extends FieldValues = FieldValues>(props: FormProps<Schema>) => {
   // Props
@@ -46,7 +47,7 @@ const Form = <Schema extends FieldValues = FieldValues>(props: FormProps<Schema>
       <form className={`form ${className}`} onSubmit={handleSubmit}>
         {children}
 
-        <button type="submit">{isPending ? 'Enviando...' : 'Enviar'}</button>
+        <Button type="submit">{isPending ? 'Enviando...' : 'Enviar'}</Button>
       </form>
     </FormProvider>
   )
