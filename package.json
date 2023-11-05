@@ -53,6 +53,7 @@
     "husky": "8.0.3",
     "lint-staged": "15.0.2",
     "prettier": "3.0.3",
+    "snaplet": "0.73.0",
     "stylelint": "15.11.0",
     "stylelint-config-clean-order": "5.2.0",
     "stylelint-config-standard": "34.0.0",
