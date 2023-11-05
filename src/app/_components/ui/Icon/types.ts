@@ -1,3 +1,4 @@
+import { Color } from '@/types/general'
 import { MaterialSymbol } from 'material-symbols'
 import { GRADES, OPTICAL_SIZES, SIZES_AS_NUMBER, SIZES_AS_STRING, WEIGHTS } from './constants'
 
@@ -9,4 +10,18 @@ type Weight = (typeof WEIGHTS)[number]
 
 type IconName = MaterialSymbol
 
-export type { Grade, IconName, OpticalSize, Size, Variant, Weight }
+type IconProps = {
+  name: IconName
+  variant?: Variant
+  size?: Size
+  fill?: Color
+  options?: {
+    fill?: 'no' | 'yes'
+    weight?: Weight
+    grade?: Grade
+    opticalSize?: OpticalSize
+  }
+  className?: string
+}
+
+export type { IconName, IconProps }

@@ -1,27 +1,12 @@
 'use client'
 
-import { Color } from '@/types/general'
 import { getNearestFromValues } from '@/utils/getNearestFromValues'
 import 'material-symbols'
 import { CSSProperties, useRef } from 'react'
 import { GRADES, OPTICAL_SIZES, SIZES_AS_STRING } from './constants'
-import { Grade, IconName, OpticalSize, Size, Variant, Weight } from './types'
+import { IconName, IconProps } from './types'
 
-type IconProps = {
-  name: IconName
-  variant?: Variant
-  size?: Size
-  fill?: Color
-  options?: {
-    fill?: 'no' | 'yes'
-    weight?: Weight
-    grade?: Grade
-    opticalSize?: OpticalSize
-  }
-  className?: string
-}
-
-const IconComponent = (props: IconProps) => {
+const Icon = (props: IconProps) => {
   // Props
   const {
     name,
@@ -83,5 +68,5 @@ const IconComponent = (props: IconProps) => {
   )
 }
 
-export { IconComponent as Icon }
-export type { IconProps }
+export { Icon }
+export type { IconName, IconProps }
