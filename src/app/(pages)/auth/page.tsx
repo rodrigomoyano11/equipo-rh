@@ -1,6 +1,6 @@
 'use client'
 
-import { getSupabase } from '@/utils/supabase/client'
+import { getSupabase } from '@/db/client'
 import { Auth, AuthCard } from '@supabase/auth-ui-react'
 import { ThemeSupa } from '@supabase/auth-ui-shared'
 import { useRouter } from 'next/navigation'

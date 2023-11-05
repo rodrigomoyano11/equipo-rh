@@ -1,4 +1,4 @@
-import { Bucket } from '@/utils/supabase/types'
+import { Bucket } from '@/db/types'
 
 type GetFileNameParams = {
   file: File

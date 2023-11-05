@@ -1,4 +1,4 @@
-import { getSupabase } from '@/utils/supabase/client'
+import { getSupabase } from '@/db/client'
 import { deleteFile } from '@services/storage/service'
 import Compressor from '@uppy/compressor'
 import { Locale, Uppy } from '@uppy/core'

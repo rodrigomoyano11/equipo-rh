@@ -1,6 +1,6 @@
 import { getFileName, getFileNameWithUserId, uploadFile } from '@services/storage/'
-import { getSupabase } from '@/utils/supabase/server'
-import { Bucket } from '@/utils/supabase/types'
+import { getSupabase } from '@/db/server'
+import { Bucket } from '@/db/types'
 import { NextRequest, NextResponse } from 'next/server'
 
 const dynamic = 'force-dynamic'

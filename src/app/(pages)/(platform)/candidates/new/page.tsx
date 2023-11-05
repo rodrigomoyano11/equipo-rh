@@ -75,17 +75,13 @@ const NewCandidatePage = () => {
       <div className="basic">
         <h2>Datos básicos</h2>
 
-        <TextField autoComplete="family-name" label="Apellido" name="firstName" />
-
         <TextField autoComplete="given-name" label="Nombre" name="lastName" />
 
-        <SelectField
-          label="Tipo de documento"
-          name="identificationType"
-          options={options.identificationType}
-        />
+        <TextField autoComplete="family-name" label="Apellido" name="firstName" />
 
-        <TextField label="Número de documento" name="identificationNumber" />
+        <SelectField label="Tipo" name="identificationType" options={options.identificationType} />
+
+        <TextField label="Número" name="identificationNumber" />
 
         <DateField label="Fecha de nacimiento" name="birthdate" />
       </div>
@@ -135,11 +131,7 @@ const NewCandidatePage = () => {
           options={options.educationLevel}
         />
 
-        <SelectField
-          label="Estado de educación"
-          name="educationStatus"
-          options={options.educationStatus}
-        />
+        <SelectField label="Estado" name="educationStatus" options={options.educationStatus} />
       </div>
 
       <div className="skills">
@@ -151,9 +143,9 @@ const NewCandidatePage = () => {
           options={options.experienceLevel}
         />
 
-        <TextField label="¿Cuáles son tus mejores habilidades?" name="bestSkills" />
-
         <TextField label="¿Por qué deberíamos contratarte?" name="whyHireYou" />
+
+        <TextField label="¿Cuáles son tus mejores habilidades?" name="bestSkills" />
       </div>
 
       <div className="profile">

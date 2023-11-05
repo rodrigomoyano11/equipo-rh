@@ -1,5 +1,5 @@
 import { FieldProps } from '@/types/forms'
-import { Bucket } from '@/utils/supabase/types'
+import { Bucket } from '@/db/types'
 
 type FileFieldProps = FieldProps & {
   bucket: Bucket

@@ -1,4 +1,4 @@
-import { Enums } from '@/utils/supabase/types'
+import { Enums } from '@/db/types'
 
 type Options = {
   visibility: {

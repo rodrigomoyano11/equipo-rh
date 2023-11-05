@@ -1,6 +1,6 @@
 /* eslint-disable no-console */
 
-import { WithSupabase } from '@/utils/supabase/types'
+import { WithSupabase } from '@/db/types'
 import {
   DeleteFileParams,
   GetFileInfoFromUrlParams,

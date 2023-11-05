@@ -1,6 +1,6 @@
 'use server'
 
-import { getSupabase } from '@/utils/supabase/server'
+import { getSupabase } from '@/db/server'
 import { Schema, schema } from './schema'
 
 const addApplication = async (data: Schema) => {

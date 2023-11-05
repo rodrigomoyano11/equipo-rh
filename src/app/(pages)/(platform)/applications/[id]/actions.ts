@@ -1,6 +1,6 @@
 'use server'
 
-import { getSupabase } from '@/utils/supabase/server'
+import { getSupabase } from '@/db/server'
 
 const getApplication = async (id: string) => {
   const supabase = getSupabase()

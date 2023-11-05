@@ -1,4 +1,4 @@
-import { getMiddlewareSupabase } from '@/utils/supabase/midleware'
+import { getMiddlewareSupabase } from '@/db/midleware'
 import { NextRequest } from 'next/server'
 
 const middleware = async (request: NextRequest) => {

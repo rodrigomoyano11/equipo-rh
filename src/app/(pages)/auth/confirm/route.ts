@@ -1,4 +1,4 @@
-import { getSupabase } from '@/utils/supabase/server'
+import { getSupabase } from '@/db/server'
 import { EmailOtpType } from '@supabase/supabase-js'
 import { NextResponse } from 'next/server'
 
