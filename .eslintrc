@@ -1,5 +1,12 @@
 {
-  "ignorePatterns": ["node_modules/", ".next/", "**/*.config.js", "**/*.d.ts", "**/*.mjs"],
+  "ignorePatterns": [
+    "node_modules/",
+    ".next/",
+    "**/*.config.js",
+    "**/*.config.ts",
+    "**/*.d.ts",
+    "**/*.mjs"
+  ],
   "extends": [
     "eslint:recommended",
     "next/core-web-vitals",
