@@ -5,9 +5,6 @@ const config = {
       { protocol: 'https', hostname: 'nqzgysouhsyqycwdmpcq.supabase.co', pathname: '/**/*' },
     ],
   },
-  experimental: {
-    typedRoutes: true,
-  },
 }
 
 module.exports = config
