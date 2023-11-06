@@ -10,7 +10,9 @@
     "lint:js": "next lint",
     "lint:css": "stylelint **/*.css",
     "format": "prettier --write **/*.{js,jsx,ts,tsx,css,html,json,md,yml}",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "create-seed": "bunx snaplet generate --sql > ./supabase/seed.sql && echo 'Seed created at ./supabase/seed.sql'",
+    "seed": "bunx supabase db reset"
   },
   "dependencies": {
     "@hookform/resolvers": "3.3.2",
