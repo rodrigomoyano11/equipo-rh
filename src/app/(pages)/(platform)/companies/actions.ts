@@ -1,15 +1,26 @@
 'use server'
 
 import { getSupabase } from '@/db/server'
+import { getPaginationRange } from '@/utils/getPaginationRange'
 
-const getCompanies = async () => {
+const buildQuery = (searchValue?: string) => {
   const supabase = getSupabase()
   const table = supabase.from('companies')
 
-  const response = await table.select('id, name, description, logo')
+  const selected = table.select(`id, name, description, logo`)
 
-  if (response.error) return []
-  return response.data
+  const filtered = searchValue ? selected.ilike('name', `%${searchValue}%`) : selected
+
+  return filtered
+}
+
+const getCompanies = async (searchValue?: string, cursor = 0) => {
+  const { from, to } = getPaginationRange(cursor)
+
+  const query = await buildQuery(searchValue).range(from, to)
+
+  if (query.error) return { cursor: null, items: [] }
+  return { cursor, items: query.data }
 }
 
 export { getCompanies }

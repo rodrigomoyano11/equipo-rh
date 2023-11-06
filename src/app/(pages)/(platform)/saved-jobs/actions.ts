@@ -1,12 +1,13 @@
 'use server'
 
 import { getSupabase } from '@/db/server'
+import { getPaginationRange } from '@/utils/getPaginationRange'
 
-const getSavedJobs = async () => {
+const buildQuery = (searchValue?: string) => {
   const supabase = getSupabase()
   const table = supabase.from('savedJobs')
 
-  const response = await table.select(
+  const selected = table.select(
     `
     id,
 
@@ -27,8 +28,20 @@ const getSavedJobs = async () => {
     `,
   )
 
-  if (response.error) return []
-  return response.data
+  const filtered = searchValue
+    ? selected.ilike('jobs.title', `%${searchValue}%`).not('jobs', 'is', null)
+    : selected
+
+  return filtered
+}
+
+const getSavedJobs = async (searchValue?: string, cursor = 0) => {
+  const { from, to } = getPaginationRange(cursor)
+
+  const query = await buildQuery(searchValue).range(from, to)
+
+  if (query.error) return { cursor: null, items: [] }
+  return { cursor, items: query.data }
 }
 
 export { getSavedJobs }
