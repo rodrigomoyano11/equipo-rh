@@ -15,7 +15,7 @@ import { ZodType } from 'zod'
 
 const Form = <Schema extends FieldValues = FieldValues>(props: FormProps<Schema>) => {
   // Props
-  const { schema, children, onSubmit, className, defaultValues } = props
+  const { schema, children, onSubmit, className = '', defaultValues } = props
 
   // Hooks
   const methods = useForm<Schema>({

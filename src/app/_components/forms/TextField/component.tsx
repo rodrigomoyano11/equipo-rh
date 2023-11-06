@@ -23,7 +23,7 @@ const TextField: FieldComponent<TextFieldProps> = (props) => {
     placeholder,
     largeText,
     isDisabled,
-    className,
+    className="",
     ...restOfProps
   } = props
 

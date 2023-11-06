@@ -26,7 +26,7 @@ import { DateFieldProps } from './types'
 
 const DateField: FieldComponent = (props) => {
   // Props
-  const { name, label, description, className } = props
+  const { name, label, description, className="" } = props
 
   // Hooks
   const id = useId()

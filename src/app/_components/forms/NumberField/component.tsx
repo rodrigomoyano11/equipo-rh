@@ -17,7 +17,7 @@ import { NumberFieldProps } from './types'
 
 const NumberField: FieldComponent<NumberFieldProps> = (props) => {
   // Props
-  const { name, label, description, placeholder, isDisabled, className, ...restOfProps } = props
+  const { name, label, description, placeholder, isDisabled, className="", ...restOfProps } = props
 
   // Hooks
   const id = useId()

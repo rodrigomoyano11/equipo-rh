@@ -17,7 +17,14 @@ import { default as Mime } from 'mime'
 
 const FileField: FieldComponent<FileFieldProps> = (props) => {
   // Props
-  const { name, label, description: descriptionProp, isDisabled, className, ...restOfProps } = props
+  const {
+    name,
+    label,
+    description: descriptionProp,
+    isDisabled,
+    className = '',
+    ...restOfProps
+  } = props
 
   // Hooks
   const id = useId()
