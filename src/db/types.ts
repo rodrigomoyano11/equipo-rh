@@ -1,4 +1,4 @@
-import { SupabaseClient } from '@supabase/supabase-js'
+import { PostgrestError, SupabaseClient } from '@supabase/supabase-js'
 
 // Main Supabase client
 type Json = Json[] | boolean | number | string | { [key: string]: Json | undefined } | null
@@ -272,4 +272,20 @@ type DbUpdate<T extends keyof Database['public']['Tables']> = Omit<
 
 type WithSupabase<T> = T & { supabase: SupabaseClient<Database> }
 
-export type { Bucket, Database, DbInsert, DbUpdate, Enums, Json, Tables, WithSupabase }
+type DbResult<T> = T extends PromiseLike<infer U> ? U : never
+type DbResultOk<T> = T extends PromiseLike<{ data: infer U }> ? Exclude<U, null> : never
+type DbResultErr = PostgrestError
+
+export type {
+  Bucket,
+  Database,
+  DbInsert,
+  DbResult,
+  DbResultErr,
+  DbResultOk,
+  DbUpdate,
+  Enums,
+  Json,
+  Tables,
+  WithSupabase
+}
