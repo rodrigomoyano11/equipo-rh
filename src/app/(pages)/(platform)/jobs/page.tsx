@@ -1,12 +1,17 @@
 'use client'
 
+import { Button } from '@/app/_components/ui/Button'
 import { Link } from '@/app/_components/ui/Link'
 import Image from 'next/image'
 import { Item } from 'react-aria-components'
 import { List } from '../../../_components/List/component'
+import { addSavedJob } from '../saved-jobs/new/actions'
 import { getJobs } from './actions'
 import './page.css'
 import { Job } from './types'
+import { addApplication } from '../applications/new/actions'
+
+const userId = '208e94c1-8375-4ce0-97c1-116d633e4c50'
 
 const JobsPage = () => (
   <div>
@@ -47,6 +52,18 @@ const JobsPage = () => (
           />
 
           <Link href={`/jobs/${job.id}`}>Ver más</Link>
+
+          <Button
+            variant="outline"
+            onPress={() => addSavedJob({ candidateId: userId, jobId: job.id })}>
+            Guardar
+          </Button>
+
+          <Button
+            variant="filled"
+            onPress={async () => addApplication({ candidateId: userId, jobId: job.id })}>
+            Aplicar
+          </Button>
         </Item>
       )}
     </List>
