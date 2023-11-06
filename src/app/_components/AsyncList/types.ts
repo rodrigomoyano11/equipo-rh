@@ -1,10 +1,14 @@
 import { GridListProps } from 'react-aria-components'
-import { AsyncListOptions } from 'react-stately'
+
+type OnLoad<T extends object> = (
+  searchValue?: string,
+  cursor?: number,
+) => Promise<{ cursor: number | null; items: T[] }>
 
 type AsyncListProps<T extends object> = {
   label: string
-  onLoad: AsyncListOptions<T, number>['load']
+  onLoad: OnLoad<T>
   children: GridListProps<T>['children']
 }
 
-export type { AsyncListProps }
+export type { AsyncListProps, OnLoad }
