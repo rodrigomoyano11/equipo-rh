@@ -6,7 +6,7 @@ const mediumString = z.string().min(3).max(300)
 const smallString = z.string().min(3).max(50)
 
 // Preprocessors
-type Preprocessor = <Z extends ZodTypeAny>(validator: Z) => z.ZodEffects<Z, Z['_output'], unknown>
+type Preprocessor = <Z extends ZodTypeAny>(validator: Z) => z.ZodEffects<Z>
 
 const stringOrArrayToStringArray: Preprocessor = (validator) =>
   z.preprocess((value) => (typeof value === 'string' ? [value] : value), validator)
