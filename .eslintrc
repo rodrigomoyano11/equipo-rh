@@ -53,6 +53,7 @@
     "react/jsx-no-useless-fragment": "error",
     "react/jsx-curly-brace-presence": ["error", { "props": "never", "children": "never" }],
     "react/jsx-key": "off",
+    "react-hooks/exhaustive-deps": "off",
 
     // Others
     "array-callback-return": "error",
@@ -132,7 +133,7 @@
     "no-lonely-if": "error",
     "no-loop-func": "error",
     "no-magic-numbers": "off",
-    "no-mixed-operators": "error",
+    "no-mixed-operators": "off",
     "no-multi-assign": "error",
     "no-multi-str": "error",
     "no-negated-condition": "error",
