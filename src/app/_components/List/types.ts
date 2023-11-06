@@ -5,10 +5,10 @@ type OnLoad<T extends object> = (
   cursor?: number,
 ) => Promise<{ cursor: number | null; items: T[] }>
 
-type AsyncListProps<T extends object> = {
+type ListProps<T extends object> = {
   label: string
   onLoad: OnLoad<T>
   children: GridListProps<T>['children']
 }
 
-export type { AsyncListProps, OnLoad }
+export type { ListProps, OnLoad }

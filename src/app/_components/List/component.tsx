@@ -1,14 +1,14 @@
 'use client'
 
+import { useState } from 'react'
 import { GridList } from 'react-aria-components'
 import { useAsyncList } from 'react-stately'
 import { IntersectionElement } from '../interactions/IntersectionElement/component'
 import { SearchField } from '../interactions/SearchField/component'
-import { AsyncListProps } from './types'
 import { Spinner } from '../ui/Spinner'
-import { useState } from 'react'
+import { ListProps } from './types'
 
-const AsyncList = <T extends object>(props: AsyncListProps<T>) => {
+const List = <T extends object>(props: ListProps<T>) => {
   // Props
   const { onLoad, children, label } = props
 
@@ -60,4 +60,4 @@ const AsyncList = <T extends object>(props: AsyncListProps<T>) => {
   )
 }
 
-export { AsyncList }
+export { List }
