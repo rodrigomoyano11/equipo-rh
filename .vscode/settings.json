@@ -29,14 +29,5 @@
     "tailwind.config.js": true,
     "tsconfig.json": true
   },
-  "files.readonlyInclude": {
-    ".husky": true,
-    ".next": true,
-    ".vercel": true,
-    "bun.lockb": true,
-    "next-env.d.ts": true,
-    "node_modules": true,
-    "pnpm-lock.yaml": true
-  },
   "typescript.tsdk": "node_modules/typescript/lib"
 }
