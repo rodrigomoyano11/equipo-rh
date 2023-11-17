@@ -1,8 +1,8 @@
-import { Item as AriaItem, Text as AriaText } from 'react-aria-components'
+import { ListBoxItem as AriaItem, Text as AriaText } from 'react-aria-components'
 import './styles.css'
-import { ItemProps } from './types'
+import { ListItemProps } from './types'
 
-const Item = ({ value, label, description }: ItemProps) => (
+const ListItem = ({ value, label, description }: ListItemProps) => (
   <AriaItem className="select-field-item" id={value} textValue={label}>
     <AriaText className="label" slot="label">
       {label}
@@ -16,5 +16,5 @@ const Item = ({ value, label, description }: ItemProps) => (
   </AriaItem>
 )
 
-export { Item }
-export type { ItemProps }
+export { ListItem }
+export type { ListItemProps }

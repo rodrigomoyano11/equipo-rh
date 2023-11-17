@@ -3,7 +3,7 @@
 import { Form, SubmitHandler } from '@/app/_components/forms/Form'
 import { NumberField } from '@components/forms/NumberField'
 import { SelectField } from '@components/forms/SelectField'
-import { ItemProps } from '@components/forms/SelectField/Item'
+import { ListItemProps } from '@components/forms/SelectField/Item'
 import { TextField } from '@components/forms/TextField'
 import { useEffect, useState } from 'react'
 import { addJob, getCompanies } from './actions'
@@ -13,7 +13,7 @@ import { options } from './constants'
 
 const NewJobPage = () => {
   // States
-  const [companies, setCompanies] = useState<ItemProps[]>([])
+  const [companies, setCompanies] = useState<ListItemProps[]>([])
   const [job, setJob] = useState<Awaited<ReturnType<typeof addJob>>>()
 
   // Methods

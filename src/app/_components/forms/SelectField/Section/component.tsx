@@ -1,5 +1,5 @@
 import { Header as AriaHeader, Section as AriaSection } from 'react-aria-components'
-import { Item } from '../Item'
+import { ListItem } from '../Item'
 import './styles.css'
 import { SectionProps } from './types'
 
@@ -9,7 +9,7 @@ const Section = ({ label, items, id }: SectionProps) => (
 
     {items.map(({ value, ...item }) => {
       const valueWithSection = `${id}-${value}`
-      return <Item key={valueWithSection} value={valueWithSection} {...item} />
+      return <ListItem key={valueWithSection} value={valueWithSection} {...item} />
     })}
   </AriaSection>
 )

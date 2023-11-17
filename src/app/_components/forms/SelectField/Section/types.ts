@@ -1,4 +1,4 @@
-import { ItemProps as Item } from '../Item'
+import { ListItemProps as Item } from '../Item'
 
 type SectionProps = {
   id: string

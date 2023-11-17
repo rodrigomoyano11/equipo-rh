@@ -1,6 +1,6 @@
 'use client'
 
-import { ItemProps } from '@/app/_components/forms/SelectField/Item'
+import { ListItemProps } from '@/app/_components/forms/SelectField/Item'
 import { getLocations } from '@/app/_services/locations'
 import { useState } from 'react'
 
@@ -12,9 +12,9 @@ const useLocations = () => {
     locality?: string
   }>({})
 
-  const [countries, setCountries] = useState<ItemProps[]>([])
-  const [states, setStates] = useState<ItemProps[]>([])
-  const [localities, setLocalities] = useState<ItemProps[]>([])
+  const [countries, setCountries] = useState<ListItemProps[]>([])
+  const [states, setStates] = useState<ListItemProps[]>([])
+  const [localities, setLocalities] = useState<ListItemProps[]>([])
 
   // Methods
   const getCountries = async () => {

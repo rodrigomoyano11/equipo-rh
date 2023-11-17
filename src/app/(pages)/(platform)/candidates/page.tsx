@@ -3,7 +3,7 @@
 import { List } from '@/app/_components/List/component'
 import { Link } from '@/app/_components/ui/Link'
 import Image from 'next/image'
-import { Item } from 'react-aria-components'
+import { GridListItem } from 'react-aria-components'
 import { getCandidates } from './actions'
 import './page.css'
 import { Candidate } from './types'
@@ -14,7 +14,7 @@ const CandidatesPage = () => (
 
     <List<Candidate> label="Candidates" onLoad={getCandidates}>
       {(candidate) => (
-        <Item textValue={`${candidate.firstName} ${candidate.lastName}`}>
+        <GridListItem textValue={`${candidate.firstName} ${candidate.lastName}`}>
           <h2>{`${candidate.firstName} ${candidate.lastName}`}</h2>
           <div className="content">
             <div>
@@ -31,7 +31,7 @@ const CandidatesPage = () => (
           />
 
           <Link href={`/candidates/${candidate.id}`}>Ver más</Link>
-        </Item>
+        </GridListItem>
       )}
     </List>
   </div>

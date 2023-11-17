@@ -14,7 +14,7 @@ import {
 } from 'react-aria-components'
 import { useController, useFormContext } from 'react-hook-form'
 import { Icon } from '../../ui/Icon'
-import { Item, ItemProps } from './Item'
+import { ListItem, ListItemProps } from './Item'
 import { Section, SectionProps } from './Section'
 import './styles.css'
 import { SelectFieldOption, SelectFieldProps } from './types'
@@ -66,7 +66,7 @@ const SelectField: FieldComponent<SelectFieldProps> = (props) => {
   // Render
   const ariaLabelProps = label ? { 'aria-labelledby': id } : { id, 'aria-label': name }
 
-  const ariaSelectFieldProps: AriaSelectFieldProps<ItemProps> = {
+  const ariaSelectFieldProps: AriaSelectFieldProps<ListItemProps> = {
     isDisabled: disabled,
     onBlur,
     onSelectionChange: async (value) => {
@@ -116,7 +116,7 @@ const SelectField: FieldComponent<SelectFieldProps> = (props) => {
         <AriaListBox className="options">
           {options.map((option) => {
             if (isSection(option)) return <Section {...option} />
-            return <Item key={option.value} {...option} />
+            return <ListItem key={option.value} {...option} />
           })}
         </AriaListBox>
       </AriaPopover>

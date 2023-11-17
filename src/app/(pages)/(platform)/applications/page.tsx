@@ -3,7 +3,7 @@
 import { List } from '@/app/_components/List/component'
 import { Link } from '@/app/_components/ui/Link'
 import Image from 'next/image'
-import { Item } from 'react-aria-components'
+import { GridListItem } from 'react-aria-components'
 import { getApplications } from './actions'
 import './page.css'
 import { Application } from './types'
@@ -14,7 +14,7 @@ const ApplicationsPage = () => (
 
     <List<Application> label="Applications" onLoad={getApplications}>
       {(application) => (
-        <Item textValue={application.jobs?.title}>
+        <GridListItem textValue={application.jobs?.title}>
           <h2>{application.jobs?.title ?? 'SIN NOMBRE'}</h2>
 
           <div>
@@ -59,7 +59,7 @@ const ApplicationsPage = () => (
           </div>
 
           <Link href={`/applications/${application.id}`}>Ver más</Link>
-        </Item>
+        </GridListItem>
       )}
     </List>
   </div>

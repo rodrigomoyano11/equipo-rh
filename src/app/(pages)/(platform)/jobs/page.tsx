@@ -3,13 +3,13 @@
 import { Button } from '@/app/_components/ui/Button'
 import { Link } from '@/app/_components/ui/Link'
 import Image from 'next/image'
-import { Item } from 'react-aria-components'
+import { GridListItem } from 'react-aria-components'
 import { List } from '../../../_components/List/component'
+import { addApplication } from '../applications/new/actions'
 import { addSavedJob } from '../saved-jobs/new/actions'
 import { getJobs } from './actions'
 import './page.css'
 import { Job } from './types'
-import { addApplication } from '../applications/new/actions'
 
 const userId = '208e94c1-8375-4ce0-97c1-116d633e4c50'
 
@@ -19,7 +19,7 @@ const JobsPage = () => (
 
     <List<Job> label="Jobs" onLoad={getJobs}>
       {(job) => (
-        <Item textValue={job.title}>
+        <GridListItem textValue={job.title}>
           <h2>{job.title}</h2>
           <div className="content">
             <div>
@@ -64,7 +64,7 @@ const JobsPage = () => (
             onPress={async () => addApplication({ candidateId: userId, jobId: job.id })}>
             Aplicar
           </Button>
-        </Item>
+        </GridListItem>
       )}
     </List>
   </div>

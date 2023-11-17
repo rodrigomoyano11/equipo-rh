@@ -3,7 +3,7 @@
 import { List } from '@/app/_components/List/component'
 import { Link } from '@/app/_components/ui/Link'
 import Image from 'next/image'
-import { Item } from 'react-aria-components'
+import { GridListItem } from 'react-aria-components'
 import { getSavedJobs } from './actions'
 import './page.css'
 import { SavedJob } from './types'
@@ -14,7 +14,7 @@ const SavedJobsPage = () => (
 
     <List<SavedJob> label="Saved Jobs" onLoad={getSavedJobs}>
       {(savedJob) => (
-        <Item textValue={savedJob.jobs?.title}>
+        <GridListItem textValue={savedJob.jobs?.title}>
           <h2>{savedJob.jobs?.title}</h2>
 
           <div>
@@ -59,7 +59,7 @@ const SavedJobsPage = () => (
           </div>
 
           <Link href={`/saved-jobs/${savedJob.id}`}>Ver más</Link>
-        </Item>
+        </GridListItem>
       )}
     </List>
   </div>

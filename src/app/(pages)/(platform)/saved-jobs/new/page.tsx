@@ -2,7 +2,7 @@
 
 import { Form, SubmitHandler } from '@components/forms/Form'
 import { SelectField } from '@components/forms/SelectField'
-import { ItemProps } from '@components/forms/SelectField/Item'
+import { ListItemProps } from '@components/forms/SelectField/Item'
 import { useEffect, useState } from 'react'
 import { addSavedJob, getCandidates, getJobs } from './actions'
 import './page.css'
@@ -10,8 +10,8 @@ import { Schema, schema } from './schema'
 
 const NewSavedJobPage = () => {
   // States
-  const [candidates, setCandidates] = useState<ItemProps[]>([])
-  const [jobs, setJobs] = useState<ItemProps[]>([])
+  const [candidates, setCandidates] = useState<ListItemProps[]>([])
+  const [jobs, setJobs] = useState<ListItemProps[]>([])
 
   const [savedJob, setSavedJob] = useState<Awaited<ReturnType<typeof addSavedJob>>>()
 

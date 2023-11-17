@@ -1,5 +1,5 @@
 import { FieldProps } from '@/types/forms'
-import { ItemProps as Item } from './Item'
+import { ListItemProps as Item } from './Item'
 import { SectionProps as Section } from './Section'
 
 type Without<T, U> = { [P in Exclude<keyof T, keyof U>]?: never }
