@@ -7,6 +7,7 @@ import { IntersectionElement } from '../interactions/IntersectionElement/compone
 import { SearchField } from '../interactions/SearchField/component'
 import { Spinner } from '../ui/Spinner'
 import { ListProps } from './types'
+import './styles.css'
 
 const List = <T extends object>(props: ListProps<T>) => {
   // Props
@@ -40,11 +41,12 @@ const List = <T extends object>(props: ListProps<T>) => {
 
   // Render
   return (
-    <>
+    <div className="list">
       <SearchField onSearch={handleSearch} />
 
       <GridList<T>
         aria-label={label}
+        className="grid-list"
         items={list.items}
         renderEmptyState={hasNextPage ? () => <Spinner /> : () => 'No se encontraron resultados'}
         selectionMode="none">
@@ -56,7 +58,7 @@ const List = <T extends object>(props: ListProps<T>) => {
           <Spinner />
         </IntersectionElement>
       )}
-    </>
+    </div>
   )
 }
 

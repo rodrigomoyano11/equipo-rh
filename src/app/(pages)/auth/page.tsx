@@ -22,7 +22,7 @@ const AuthPage = () => {
     const { data } = supabase.auth.onAuthStateChange((event, session) => {
       const isLoggedIn = (event === 'INITIAL_SESSION' || event === 'SIGNED_IN') && session
 
-      if (isLoggedIn) router.push('/')
+      if (isLoggedIn) router.push('/candidates/new')
       else setAuthIsLoaded(true)
     })
 
