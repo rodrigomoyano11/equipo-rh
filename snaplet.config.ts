@@ -34,10 +34,12 @@ const languages = [
   'other',
 ] as const
 
+const userId = '208e94c1-8375-4ce0-97c1-116d633e4c50'
+
 const config = defineConfig({
   generate: {
     run: async (snaplet) => {
-      const userIds = Array.from({ length: 10 }, () => faker.string.uuid())
+      const userIds = [userId, ...Array.from({ length: 30 }, () => faker.string.uuid())]
 
       const users = snaplet.users((x) =>
         x(userIds.length, (index) => ({
