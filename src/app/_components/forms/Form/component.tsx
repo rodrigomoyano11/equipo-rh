@@ -9,9 +9,8 @@ import {
   SubmitHandler as RHFSubmitHandler,
   useForm,
 } from 'react-hook-form'
-import { FormProps, SubmitHandler } from './types'
 import { Button } from '../../ui/Button'
-import { ZodType } from 'zod'
+import { FormProps, SubmitHandler } from './types'
 
 const Form = <Schema extends FieldValues = FieldValues>(props: FormProps<Schema>) => {
   // Props
@@ -19,7 +18,7 @@ const Form = <Schema extends FieldValues = FieldValues>(props: FormProps<Schema>
 
   // Hooks
   const methods = useForm<Schema>({
-    resolver: zodResolver<ZodType<Schema>>(schema),
+    resolver: zodResolver(schema),
     defaultValues,
   })
 
