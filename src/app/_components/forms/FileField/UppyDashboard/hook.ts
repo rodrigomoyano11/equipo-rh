@@ -11,7 +11,8 @@ const getUppy = () => {
   const locale = esES as Locale
   const uppy = new Uppy({ locale })
 
-  uppy.use(Compressor)
+  // FIXME: This is a bug in the @types/uppy package
+  uppy.use(Compressor as typeof XHRUpload)
   uppy.use(XHRUpload, { endpoint: '' })
 
   return uppy
