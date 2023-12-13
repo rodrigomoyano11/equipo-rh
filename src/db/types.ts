@@ -253,23 +253,84 @@ type Database = {
   }
 }
 
+type Tables<
+  PublicTableNameOrOptions extends
+    | keyof (Database['public']['Tables'] & Database['public']['Views'])
+    | { schema: keyof Database },
+  TableName extends PublicTableNameOrOptions extends { schema: keyof Database }
+    ? keyof (Database[PublicTableNameOrOptions['schema']]['Tables'] &
+        Database[PublicTableNameOrOptions['schema']]['Views'])
+    : never = never,
+> = PublicTableNameOrOptions extends { schema: keyof Database }
+  ? (Database[PublicTableNameOrOptions['schema']]['Tables'] &
+      Database[PublicTableNameOrOptions['schema']]['Views'])[TableName] extends {
+      Row: infer R
+    }
+    ? R
+    : never
+  : PublicTableNameOrOptions extends keyof (Database['public']['Tables'] &
+        Database['public']['Views'])
+    ? (Database['public']['Tables'] &
+        Database['public']['Views'])[PublicTableNameOrOptions] extends {
+        Row: infer R
+      }
+      ? R
+      : never
+    : never
+
+type TablesInsert<
+  PublicTableNameOrOptions extends keyof Database['public']['Tables'] | { schema: keyof Database },
+  TableName extends PublicTableNameOrOptions extends { schema: keyof Database }
+    ? keyof Database[PublicTableNameOrOptions['schema']]['Tables']
+    : never = never,
+> = PublicTableNameOrOptions extends { schema: keyof Database }
+  ? Database[PublicTableNameOrOptions['schema']]['Tables'][TableName] extends {
+      Insert: infer I
+    }
+    ? I
+    : never
+  : PublicTableNameOrOptions extends keyof Database['public']['Tables']
+    ? Database['public']['Tables'][PublicTableNameOrOptions] extends {
+        Insert: infer I
+      }
+      ? I
+      : never
+    : never
+
+type TablesUpdate<
+  PublicTableNameOrOptions extends keyof Database['public']['Tables'] | { schema: keyof Database },
+  TableName extends PublicTableNameOrOptions extends { schema: keyof Database }
+    ? keyof Database[PublicTableNameOrOptions['schema']]['Tables']
+    : never = never,
+> = PublicTableNameOrOptions extends { schema: keyof Database }
+  ? Database[PublicTableNameOrOptions['schema']]['Tables'][TableName] extends {
+      Update: infer U
+    }
+    ? U
+    : never
+  : PublicTableNameOrOptions extends keyof Database['public']['Tables']
+    ? Database['public']['Tables'][PublicTableNameOrOptions] extends {
+        Update: infer U
+      }
+      ? U
+      : never
+    : never
+
+type Enums<
+  PublicEnumNameOrOptions extends keyof Database['public']['Enums'] | { schema: keyof Database },
+  EnumName extends PublicEnumNameOrOptions extends { schema: keyof Database }
+    ? keyof Database[PublicEnumNameOrOptions['schema']]['Enums']
+    : never = never,
+> = PublicEnumNameOrOptions extends { schema: keyof Database }
+  ? Database[PublicEnumNameOrOptions['schema']]['Enums'][EnumName]
+  : PublicEnumNameOrOptions extends keyof Database['public']['Enums']
+    ? Database['public']['Enums'][PublicEnumNameOrOptions]
+    : never
+
 // Buckets
 type Bucket = 'company-logos' | 'profile-pictures' | 'resumes'
 
 // Utility types
-type Tables<T extends keyof Database['public']['Tables']> = Database['public']['Tables'][T]['Row']
-type Enums<T extends keyof Database['public']['Enums']> = Database['public']['Enums'][T]
-
-type DbInsert<T extends keyof Database['public']['Tables']> = Omit<
-  Database['public']['Tables'][T]['Insert'],
-  'createdAt' | 'id'
->
-
-type DbUpdate<T extends keyof Database['public']['Tables']> = Omit<
-  Database['public']['Tables'][T]['Update'],
-  'createdAt' | 'id'
->
-
 type WithSupabase<T> = T & { supabase: SupabaseClient<Database> }
 
 type DbResult<T> = T extends PromiseLike<infer U> ? U : never
@@ -279,13 +340,13 @@ type DbResultErr = PostgrestError
 export type {
   Bucket,
   Database,
-  DbInsert,
   DbResult,
   DbResultErr,
   DbResultOk,
-  DbUpdate,
   Enums,
   Json,
   Tables,
-  WithSupabase
+  TablesInsert,
+  TablesUpdate,
+  WithSupabase,
 }
