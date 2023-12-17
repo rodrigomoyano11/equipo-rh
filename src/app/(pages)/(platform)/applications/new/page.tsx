@@ -3,6 +3,7 @@ import { getCandidates, getJobs } from './actions'
 import './page.css'
 
 const NewApplicationPage = async () => {
+  // Data
   const jobs = await getJobs()
   const adaptedJobs = jobs.map(({ id, title, companies }) => ({
     label: `${title} (${companies?.name ?? 'Sin empresa'})`,
