@@ -14,18 +14,24 @@ const getSupabase = () => {
   const methods: CookieMethods = {
     get: (name) => cookies.get(name)?.value,
 
-    set: (name, value, options) => {
-      cookies.set({ ...(options as ResponseCookie), name, value })
+    set: (name, value, options: ResponseCookie) => {
+      try {
+        cookies.set({ ...options, name, value })
+      } catch {
+        // It's a Server Component
+      }
     },
 
-    remove: (name, options) => {
-      cookies.delete({ ...(options as ResponseCookie), name })
+    remove: (name, options: ResponseCookie) => {
+      try {
+        cookies.delete({ ...options, name })
+      } catch {
+        // It's a Server Component
+      }
     },
   }
 
-  return createServerClient<Database>(url, key, {
-    cookies: methods,
-  })
+  return createServerClient<Database>(url, key, { cookies: methods })
 }
 
 export { getSupabase }
