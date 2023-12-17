@@ -4,7 +4,7 @@ import { Schema } from './schema'
 
 type AddJobFormProps = {
   companies: ListItemProps[]
-  defaultValues: Schema
+  defaultValues: Partial<Schema>
 }
 
 type Options = {

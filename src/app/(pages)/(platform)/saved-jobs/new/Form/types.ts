@@ -4,7 +4,7 @@ import { Schema } from './schema'
 type AddSavedJobFormProps = {
   candidates: ListItemProps[]
   jobs: ListItemProps[]
-  defaultValues: Schema
+  defaultValues: Partial<Schema>
 }
 
 export type { AddSavedJobFormProps }
