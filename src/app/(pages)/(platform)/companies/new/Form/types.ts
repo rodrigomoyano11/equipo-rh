@@ -1,7 +1,7 @@
-import { addCompany } from './actions'
+import { Schema } from './schema'
 
 type AddCompanyFormProps = {
-  defaultValues: Partial<Awaited<ReturnType<typeof addCompany>>>
+  defaultValues: Schema
 }
 
 export type { AddCompanyFormProps }

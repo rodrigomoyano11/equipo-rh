@@ -7,6 +7,7 @@ import { useEffect, useState } from 'react'
 import { addCompany } from './actions'
 import { Schema, schema } from './schema'
 import { AddCompanyFormProps } from './types'
+import { convertNullsToUndefined } from '@/utils/convertNullsToUndefined'
 
 const AddCompanyForm = ({ defaultValues }: AddCompanyFormProps) => {
   // States
@@ -28,15 +29,13 @@ const AddCompanyForm = ({ defaultValues }: AddCompanyFormProps) => {
     setFileName(crypto.randomUUID())
   }, [])
 
+
+
   // Render
   return (
     <Form
+      defaultValues={defaultValues}
       schema={schema}
-      defaultValues={{
-        name: defaultValues?.name ?? undefined,
-        description: defaultValues?.description ?? undefined,
-        logo: defaultValues?.logo ?? undefined,
-      }}
       onSubmit={handleSubmit}>
       <h1>Crear Empresa</h1>
 

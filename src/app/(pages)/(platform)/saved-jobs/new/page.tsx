@@ -1,4 +1,4 @@
-import { AddSavedJob } from './Form'
+import { AddSavedJobForm } from './Form'
 import { getCandidates, getJobs } from './actions'
 import './page.css'
 
@@ -20,7 +20,11 @@ const NewSavedJobPage = async () => {
 
   // Render
   return (
-    <AddSavedJob candidates={adaptedCandidates} defaultValues={defaultValues} jobs={adaptedJobs} />
+    <AddSavedJobForm
+      candidates={adaptedCandidates}
+      defaultValues={defaultValues}
+      jobs={adaptedJobs}
+    />
   )
 }
 

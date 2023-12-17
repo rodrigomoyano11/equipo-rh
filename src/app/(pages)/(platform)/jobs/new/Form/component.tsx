@@ -21,7 +21,7 @@ const AddJobForm = ({ defaultValues, companies }: AddJobFormProps) => {
 
   // Effects
   return (
-    <Form defaultValues={defaultValues ?? undefined} schema={schema} onSubmit={handleSubmit}>
+    <Form defaultValues={defaultValues} schema={schema} onSubmit={handleSubmit}>
       <h1>Crear Oferta de Trabajo</h1>
 
       <TextField label="Título" name="title" />

@@ -1,10 +1,10 @@
 import { ListItemProps } from '@/app/_components/forms/SelectField/Item'
-import { addSavedJob } from './actions'
+import { Schema } from './schema'
 
-type AddApplicationFormProps = {
+type AddSavedJobFormProps = {
   candidates: ListItemProps[]
   jobs: ListItemProps[]
-  defaultValues: Partial<Awaited<ReturnType<typeof addSavedJob>>>
+  defaultValues: Schema
 }
 
-export type { AddApplicationFormProps }
+export type { AddSavedJobFormProps }

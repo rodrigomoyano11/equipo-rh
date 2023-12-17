@@ -18,7 +18,7 @@ const AddApplicationForm = ({ candidates, defaultValues, jobs }: AddApplicationF
 
   // Effects
   return (
-    <Form defaultValues={defaultValues ?? undefined} schema={schema} onSubmit={handleSubmit}>
+    <Form defaultValues={defaultValues} schema={schema} onSubmit={handleSubmit}>
       <h1>Aplicar a Oferta de Trabajo</h1>
 
       <SelectField label="Oferta de Trabajo" name="jobId" options={jobs} />
