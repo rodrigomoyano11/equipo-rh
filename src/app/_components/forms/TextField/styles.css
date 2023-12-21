@@ -39,7 +39,7 @@
         box-shadow: 0 0 0 var(--border-width-1) var(--blue-color);
       }
 
-      &[data-hovered] {
+      &[data-hovered]:not([data-focused]) {
         border-color: var(--border-color-2);
       }
     }
