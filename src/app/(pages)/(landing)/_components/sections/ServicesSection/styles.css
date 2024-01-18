@@ -1,0 +1,84 @@
+.services-section-component {
+  container: services / inline-size;
+  display: flex;
+  flex-direction: column;
+
+  inline-size: 100%;
+  padding-block: var(--space-6);
+  padding-inline: var(--space-4);
+
+  background-color: var(--background-color-1);
+
+  > .main-title {
+    margin-block-end: var(--space-5);
+
+    font-size: var(--level-7);
+    font-weight: var(--font-weight-bold);
+    color: var(--accent-color-2);
+    text-align: center;
+  }
+
+  > .services {
+    display: flex;
+    gap: var(--space-6);
+
+    > .service {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-4);
+
+      padding: var(--space-4);
+
+      background-color: var(--background-color-2);
+      border: var(--border);
+      border-radius: var(--border-radius);
+
+      > .image-container {
+        position: relative;
+        aspect-ratio: 4/3;
+        inline-size: 100%;
+
+        > .image {
+          object-fit: cover;
+          border-radius: var(--border-radius);
+        }
+      }
+
+      > .title {
+        font-size: var(--level-5);
+        font-weight: var(--font-weight-bold);
+        color: var(--text-color-2);
+      }
+
+      > .description {
+        font-size: var(--level-4);
+        font-weight: var(--font-weight-regular);
+        color: var(--text-color-1);
+      }
+    }
+
+    @container services (inline-size <= 48rem) {
+      flex-direction: column;
+      text-align: center;
+
+      > .service {
+        padding: var(--space-5);
+        border-radius: var(--border-radius);
+
+        > .image-container {
+          > .image {
+            border-radius: var(--border-radius);
+          }
+        }
+
+        > .title {
+          font-size: var(--level-6);
+        }
+
+        > .description {
+          font-size: var(--level-3);
+        }
+      }
+    }
+  }
+}

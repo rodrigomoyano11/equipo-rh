@@ -1,0 +1,15 @@
+.contact-form-component {
+  min-inline-size: 24rem;
+  padding: var(--space-5);
+  border: var(--border);
+  border-radius: var(--border-radius);
+
+  > .submit {
+    margin-block-start: var(--space-5);
+  }
+
+  @container (inline-size <= 48rem) {
+    inline-size: 100%;
+    min-inline-size: 100%;
+  }
+}

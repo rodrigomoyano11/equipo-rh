@@ -81,12 +81,25 @@ const SelectField: FieldComponent<SelectFieldProps> = (props) => {
     ...ariaLabelProps,
   }
 
+  const [counter, setCounter] = useState(0)
+
+  // isOpen = 0
+
+  const manejarOpenChange = () => {
+    // isOpen = 0
+    setCounter((prevState) => prevState + 1)
+
+    setIsOpen(!isOpen)
+  }
+
+  // JavaScript Closures
+
   return (
     <AriaSelectField
       ref={ref}
       className={`select-field ${className}`}
       disabledKeys={disabledOptions}
-      onOpenChange={setIsOpen}
+      onOpenChange={manejarOpenChange}
       {...ariaSelectFieldProps}>
       {label && (
         <AriaLabel className="label" htmlFor={id}>

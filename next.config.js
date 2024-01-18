@@ -2,6 +2,7 @@
 const config = {
   images: {
     remotePatterns: [
+      { hostname: 'equiporh.com.ar/**' },
       { protocol: 'https', hostname: 'nqzgysouhsyqycwdmpcq.supabase.co', pathname: '/**/*' },
 
       // For local development

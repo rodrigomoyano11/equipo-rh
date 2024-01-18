@@ -1,0 +1,115 @@
+.two-columns-section-component {
+  container: two-columns-section / inline-size;
+  padding: var(--space-4) var(--space-3);
+
+  > .main-title {
+    margin-block-end: var(--space-5);
+
+    font-size: var(--level-7);
+    font-weight: var(--font-weight-bold);
+    color: var(--text-color-3);
+    text-align: center;
+  }
+
+  > .columns {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(40cqi, 1fr));
+    gap: var(--space-4);
+
+    > .column-image {
+      min-block-size: 32rem;
+
+      > .image-container {
+        position: relative;
+        inline-size: 100%;
+        block-size: 100%;
+
+        > .image {
+          object-fit: cover;
+          border-radius: var(--border-radius);
+        }
+      }
+    }
+
+    > .column-caption {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      min-block-size: 32rem;
+      padding: var(--space-4);
+
+      > .overline {
+        margin-block-end: var(--space-1);
+        font-size: var(--level-3);
+        font-weight: var(--font-weight-bold);
+        color: var(--accent-color-2);
+      }
+
+      > .title {
+        margin-block-end: var(--space-2);
+
+        font-size: var(--level-6);
+        font-weight: var(--font-weight-bold);
+        color: var(--text-color-3);
+        text-wrap: balance;
+      }
+
+      > .subtitle {
+        margin-block-end: var(--space-3);
+
+        font-size: var(--level-4);
+        font-weight: var(--font-weight-bold);
+        color: var(--text-color-1);
+        text-wrap: balance;
+      }
+
+      > .description {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-2);
+
+        margin-block-end: var(--space-4);
+
+        font-size: var(--level-4);
+        font-weight: var(--font-weight-regular);
+        color: var(--text-color-2);
+        text-wrap: balance;
+      }
+
+      > .list {
+        display: flex;
+        flex-direction: column;
+        gap: var(--space-1);
+
+        padding-inline: var(--space-1);
+
+        list-style: none;
+
+        > .item {
+          display: flex;
+          gap: var(--space-2);
+          align-items: center;
+          text-wrap: balance;
+        }
+      }
+    }
+
+    @container two-columns-section (inline-size <= 48rem) {
+      grid-template-columns: 1fr;
+
+      > .column-image {
+        min-block-size: unset;
+
+        > .image-container {
+          aspect-ratio: 4/3;
+        }
+      }
+
+      > .column-caption {
+        min-block-size: unset;
+        text-align: center;
+      }
+    }
+  }
+}

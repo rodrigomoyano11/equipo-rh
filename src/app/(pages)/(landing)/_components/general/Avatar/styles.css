@@ -1,0 +1,15 @@
+.avatar-component {
+  position: relative;
+
+  aspect-ratio: 1/1;
+  inline-size: 6rem;
+
+  background-color: var(--white-color);
+  border: var(--border);
+  border-radius: var(--border-radius);
+
+  > .image {
+    padding: var(--space-1);
+    object-fit: contain;
+  }
+}
