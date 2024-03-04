@@ -6,6 +6,13 @@
       "type": "shell",
       "command": "npx next telemetry disable && npm ci",
       "problemMatcher": []
+    },
+    {
+      "label": "clear-all",
+      "type": "shell",
+      "command": "find . -name 'node_modules' -type d -prune -exec rm -rf '{}' + && find . -name '.next' -type d -prune -exec rm -rf '{}' + && find . -name '.turbo' -type d -prune -exec rm -rf '{}' + && rm ./package-lock.json",
+      "problemMatcher": [],
+      "detail": "Clear all node_modules, .next and .turbo folders and package-lock.json"
     }
   ]
 }
