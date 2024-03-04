@@ -1,17 +1,21 @@
 {
   "css.customData": ["./.vscode/custom-css.json"],
   "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": "always",
+    "source.fixAll": "always"
+  },
   "eslint.workingDirectories": [{ "mode": "auto" }],
   "files.exclude": {
-    "**/*.config.*": true,
-    "**/node_modules": true,
-    "**/tsconfig.json": true,
-    "**/tsconfig.*.json": true,
-    "**/README.md": true,
-    "**/next-env.d.*": true,
-    "**/.*": true,
-    "**/package-lock.json": true,
-    "**/turbo.json": true
+    "**/*.config.*": false,
+    "**/node_modules": false,
+    "**/tsconfig.json": false,
+    "**/tsconfig.*.json": false,
+    "**/README.md": false,
+    "**/next-env.d.*": false,
+    "**/.*": false,
+    "**/package-lock.json": false,
+    "**/turbo.json": false
   },
   "typescript.tsdk": "node_modules/typescript/lib",
   "workbench.editor.labelFormat": "short"
