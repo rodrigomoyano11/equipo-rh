@@ -1,0 +1,29 @@
+{
+  "name": "equipo-rh",
+  "private": true,
+  "scripts": {
+    "build": "turbo build",
+    "dev": "turbo dev",
+    "lint": "turbo lint",
+    "format": "prettier --write --ignore-unknown",
+    "generate": "turbo generate",
+    "prepare": "husky"
+  },
+  "devDependencies": {
+    "@repo/commitlint-config": "*",
+    "@repo/eslint-config": "*",
+    "@repo/lint-staged-config": "*",
+    "@repo/prettier-config": "*",
+    "@repo/stylelint-config": "*",
+    "@repo/typescript-config": "*",
+    "turbo": "1.12.4"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "packageManager": "npm@10.5.0",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ]
+}

@@ -1,0 +1,6 @@
+{
+  "ignorePatterns": ["apps/**", "packages/**"],
+  "extends": ["@repo/eslint-config/src/library.js"],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": { "ecmaVersion": "latest", "project": true }
+}
