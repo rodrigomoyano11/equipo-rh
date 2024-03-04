@@ -3,16 +3,15 @@
   "atDirectives": [
     {
       "name": "@scope",
-      "browsers": ["E118", "C118"],
+      "description": "Declare a scope for a set of style rules that only apply to a specific subtree of the document.",
       "references": [
         {
-          "name": "Chrome for Developers - The Delicate Art of Writing CSS Selectors",
-          "url": "https://developer.chrome.com/articles/at-scope/#the-delicate-art-of-writing-css-selectors"
+          "name": "MDN Reference",
+          "url": "https://developer.mozilla.org/en-US/docs/Web/CSS/@scope"
         }
       ],
-      "description": "Declare a scope for a set of style rules that only apply to a specific subtree of the document."
+      "browsers": ["C118", "E118", "O104", "S17.4"]
     }
   ],
-  "properties": [{ "name": "text-wrap" }],
   "version": 1.1
 }

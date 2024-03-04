@@ -1,0 +1,10 @@
+{
+  "root": true,
+  "extends": ["@repo/eslint-config/src/next.js"],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "project": true,
+    "ecmaFeatures": { "jsx": true }
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "name": "@repo/stylelint-config",
+  "version": "0.0.0",
+  "private": true,
+  "main": "src/general.json",
+  "devDependencies": {
+    "@isnotdefined/stylelint-plugin": "5.0.0",
+    "stylelint": "16.2.1",
+    "stylelint-config-clean-order": "5.4.1",
+    "stylelint-config-standard": "36.0.0",
+    "stylelint-plugin-logical-css": "1.0.0"
+  }
+}

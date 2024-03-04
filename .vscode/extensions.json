@@ -1,8 +1,9 @@
 {
   "recommendations": [
-    "stylelint.vscode-stylelint",
     "pflannery.vscode-versionlens",
     "esbenp.prettier-vscode",
-    "dbaeumer.vscode-eslint"
+    "dbaeumer.vscode-eslint",
+    "amodio.toggle-excluded-files",
+    "stylelint.vscode-stylelint"
   ]
 }

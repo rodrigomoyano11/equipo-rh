@@ -1,0 +1,10 @@
+{
+  "root": true,
+  "extends": ["@repo/eslint-config/src/react-internal.js"],
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": "latest",
+    "project": "./tsconfig.lint.json",
+    "ecmaFeatures": { "jsx": true }
+  }
+}

@@ -1,75 +1,29 @@
 {
   "name": "equipo-rh",
-  "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "bun run lint:js && bun run lint:css",
-    "lint:js": "next lint",
-    "lint:css": "stylelint **/*.css",
-    "format": "prettier --write **/*.{js,jsx,ts,tsx,css,html,json,md,yml}",
-    "prepare": "husky install",
-    "create-seed": "bunx snaplet generate --sql > ./supabase/seed.sql && echo 'Seed created at ./supabase/seed.sql'",
-    "seed": "bunx supabase db reset"
-  },
-  "dependencies": {
-    "@hookform/resolvers": "3.3.4",
-    "@supabase/auth-ui-react": "0.4.7",
-    "@supabase/auth-ui-shared": "0.1.8",
-    "@supabase/ssr": "0.1.0",
-    "@supabase/supabase-js": "2.39.7",
-    "@uidotdev/usehooks": "2.4.1",
-    "@uppy/compressor": "1.0.5",
-    "@uppy/core": "3.8.0",
-    "@uppy/dashboard": "3.7.1",
-    "@uppy/drag-drop": "3.0.3",
-    "@uppy/file-input": "3.0.4",
-    "@uppy/locales": "3.5.0",
-    "@uppy/progress-bar": "3.0.4",
-    "@uppy/react": "3.2.1",
-    "@uppy/xhr-upload": "3.6.0",
-    "i18next": "23.9.0",
-    "material-symbols": "0.15.0",
-    "mime": "4.0.1",
-    "next": "14.1.0",
-    "react": "18.2.0",
-    "react-aria": "3.32.1",
-    "react-aria-components": "1.1.1",
-    "react-dom": "18.2.0",
-    "react-hook-form": "7.50.1",
-    "react-stately": "3.30.1",
-    "zod": "3.22.4",
-    "zod-i18n-map": "2.27.0"
+    "build": "turbo build",
+    "dev": "turbo dev",
+    "lint": "turbo lint",
+    "format": "prettier --write --ignore-unknown",
+    "generate": "turbo generate",
+    "prepare": "husky"
   },
   "devDependencies": {
-    "@isnotdefined/stylelint-plugin": "4.0.0",
-    "@types/node": "20.11.19",
-    "@types/react": "18.2.56",
-    "@types/react-dom": "18.2.19",
-    "@typescript-eslint/eslint-plugin": "7.0.1",
-    "@typescript-eslint/parser": "7.0.1",
-    "eslint": "8.56.0",
-    "eslint-config-next": "14.1.0",
-    "eslint-config-prettier": "9.1.0",
-    "husky": "9.0.11",
-    "lint-staged": "15.2.2",
-    "prettier": "3.2.5",
-    "snaplet": "0.73.0",
-    "stylelint": "16.2.1",
-    "stylelint-config-clean-order": "5.4.1",
-    "stylelint-config-standard": "36.0.0",
-    "stylelint-plugin-logical-css": "1.0.0",
-    "supabase": "1.142.2",
-    "typescript": "5.3.3"
+    "@repo/commitlint-config": "*",
+    "@repo/eslint-config": "*",
+    "@repo/lint-staged-config": "*",
+    "@repo/prettier-config": "*",
+    "@repo/stylelint-config": "*",
+    "@repo/typescript-config": "*",
+    "turbo": "1.12.4"
   },
-  "lint-staged": {
-    "*.{js,jsx,ts,tsx}": "eslint --fix",
-    "*.{js,jsx,ts,tsx,css,html,json,md,yml}": "prettier --write",
-    "*.css": "stylelint --fix"
+  "engines": {
+    "node": ">=20"
   },
-  "trustedDependencies": [
-    "supabase"
+  "packageManager": "npm@10.5.0",
+  "workspaces": [
+    "apps/*",
+    "packages/*"
   ]
 }
