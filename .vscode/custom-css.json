@@ -11,6 +11,16 @@
         }
       ],
       "browsers": ["C118", "E118", "O104", "S17.4"]
+    },
+    {
+      "name": "@tailwind",
+      "description": "Inject Tailwind CSS directives into your stylesheet.",
+      "references": [
+        {
+          "name": "Tailwind CSS Documentation",
+          "url": "https://tailwindcss.com/docs/functions-and-directives#tailwind"
+        }
+      ]
     }
   ],
   "version": 1.1
