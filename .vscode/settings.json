@@ -7,15 +7,15 @@
   },
   "eslint.workingDirectories": [{ "mode": "auto" }],
   "files.exclude": {
-    "**/*.config.*": false,
-    "**/node_modules": false,
-    "**/tsconfig.json": false,
-    "**/tsconfig.*.json": false,
-    "**/README.md": false,
-    "**/next-env.d.*": false,
-    "**/.*": false,
-    "**/package-lock.json": false,
-    "**/turbo.json": false
+    "**/*.config.*": true,
+    "**/node_modules": true,
+    "**/tsconfig.json": true,
+    "**/tsconfig.*.json": true,
+    "**/README.md": true,
+    "**/next-env.d.*": true,
+    "**/.*": true,
+    "**/package-lock.json": true,
+    "**/turbo.json": true
   },
   "typescript.tsdk": "node_modules/typescript/lib",
   "workbench.editor.labelFormat": "short"
