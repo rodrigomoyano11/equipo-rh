@@ -8,6 +8,7 @@ const config = {
   singleQuote: true,
   quoteProps: 'consistent',
   overrides: [{ files: '*.eslintrc', options: { trailingComma: 'none' } }],
+  plugins: ['prettier-plugin-tailwindcss'],
 }
 
 module.exports = config
