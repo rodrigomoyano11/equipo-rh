@@ -7,7 +7,8 @@
   },
   "eslint.workingDirectories": [{ "mode": "auto" }],
   "files.exclude": {
-    "**/*.config.*": true,
+    "**/postcss.config.*": true,
+    "**/next.config.*": true,
     "**/node_modules": true,
     "**/tsconfig.json": true,
     "**/tsconfig.*.json": true,
@@ -18,5 +19,12 @@
     "**/turbo.json": true
   },
   "typescript.tsdk": "node_modules/typescript/lib",
-  "workbench.editor.labelFormat": "short"
+  "workbench.editor.labelFormat": "short",
+  "tailwindCSS.includeLanguages": {
+    "javascriptreact": "javascriptreact",
+    "typescriptreact": "typescriptreact"
+  },
+  "editor.quickSuggestions": {
+    "strings": true
+  }
 }
