@@ -4,6 +4,7 @@
     "esbenp.prettier-vscode",
     "dbaeumer.vscode-eslint",
     "amodio.toggle-excluded-files",
-    "stylelint.vscode-stylelint"
+    "stylelint.vscode-stylelint",
+    "bradlc.vscode-tailwindcss"
   ]
 }
