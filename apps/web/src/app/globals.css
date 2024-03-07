@@ -3,7 +3,6 @@
 @tailwind utilities;
 
 * {
-  min-inline-size: 0;
   font: inherit;
 }
 
