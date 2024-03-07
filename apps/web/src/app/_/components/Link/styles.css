@@ -1,0 +1,40 @@
+/* @layer components { */
+@scope (.link) {
+  & {
+    cursor: pointer;
+
+    position: relative;
+
+    font-size: var(--level-3);
+    line-height: calc(var(--level-3) * 1.5);
+    color: var(--text-color-3);
+    text-decoration: underline;
+
+    outline: none;
+
+    transition: all 200ms;
+
+    &[data-hovered] {
+      color: var(--text-color-2);
+    }
+
+    &[data-pressed] {
+      color: var(--accent-color-1);
+    }
+
+    &[data-disabled] {
+      cursor: not-allowed;
+      color: var(--text-color-1);
+    }
+
+    &:focus-visible::after {
+      content: '';
+
+      position: absolute;
+      inset: -0.25rem -0.5rem;
+
+      border: var(--border-width-2) solid var(--blue-color);
+      border-radius: var(--border-radius);
+    }
+  }
+}
